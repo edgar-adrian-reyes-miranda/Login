@@ -3,9 +3,7 @@ package com.logueo.spring.Controllers;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,12 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import lombok.*;
+import com.logueo.spring.Entity.LoginForm;
 import com.logueo.spring.Entity.Usuario;
 import com.logueo.spring.Entity.UsurioRol;
 import com.logueo.spring.Repository.UsuarioRepostory;
 import com.logueo.spring.Services.UsuarioServices;
 
-@RequestMapping("/api/login")
+@Data
+@RequestMapping("/api/usuarios")
 @RestController
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class UsuarioController {
@@ -46,24 +47,23 @@ public class UsuarioController {
 		}
 	}
 	/////acceder al login
-	@PostMapping
-    public ResponseEntity<?> login(@RequestBody Usuario usuario) {
-        try {
-            // Realizar la autenticación utilizando el servicio
-            boolean authenticated = usuarioServices.authenticador(usuario.getUsername(), usuario.getPassword());
+	@PostMapping("/login")
+	private ResponseEntity<String> login(@RequestBody LoginForm loginform){
+		System.out.println(loginform.getUsername());
+		System.out.println(loginform.getPassword());
+		String username=loginform.getUsername();
+		String password=loginform.getPassword();
+		// Aquí implementamos la lógica de autenticación utilizando el servicio UserService
+		if (usuarioServices.authenticador(username, password)) {
+	        // Si las credenciales son válidas, devolvemos un objeto JSON con un mensaje
+			return ResponseEntity.ok("{\"message\": \"Autenticación exitosa\",\"ok\": true}");
 
-            if (authenticated) {
-                // Devolver un token u otra información de éxito según sea necesario
-                return ResponseEntity.ok("Inicio de sesión exitoso");
-            } else {
-                // Devolver una respuesta de error si la autenticación falla
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Nombre de usuario o contraseña incorrectos");
-            }
-        } catch (Exception e) {
-            // Manejar otras excepciones
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en el servidor");
-        }
-    }
+	    } else {
+	        // Si las credenciales son inválidas, devolvemos una respuesta de error con un mensaje
+	    	return ResponseEntity.ok("{\"message\": \"Credenciales inválidas\",\"ok\": false}");
+	    	//return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+	    }
+	}
 	
 	//metodo para guardar y actualizar
 	@PostMapping(path = "/guardar")
