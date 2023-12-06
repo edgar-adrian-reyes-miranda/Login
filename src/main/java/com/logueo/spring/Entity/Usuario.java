@@ -2,7 +2,6 @@ package com.logueo.spring.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.*;
@@ -20,8 +19,8 @@ public class Usuario {
 	private String p_apellido;
 	private String s_apellido;
 	private String correo;
-	
 	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario")
 	@JsonIgnore
 	private Set<UsurioRol> usuarioRoles = new HashSet<>() ;
+	 
 }
