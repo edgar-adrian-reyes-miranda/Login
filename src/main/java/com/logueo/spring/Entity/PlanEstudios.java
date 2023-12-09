@@ -1,5 +1,8 @@
 package com.logueo.spring.Entity;
 
-public class PlanEstudios {
-
+public enum PlanEstudios {
+	Semestral,
+	Cuatrimestral,
+	Bimestral
 }
+

@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.logueo.spring.Entity.Carreras;
 import com.logueo.spring.Entity.DatosEscolares;
+import com.logueo.spring.Entity.ModalidadesEscolares;
+import com.logueo.spring.Entity.Periodo;
+import com.logueo.spring.Entity.PlanEstudios;
 import com.logueo.spring.Entity.Universidades;
 
 @Service
@@ -15,4 +18,7 @@ public interface DatosEscolaresServices {
 	public void eliminardatopersonal(Integer id_datopersonal);
 	List<DatosEscolares>findByCarrera(Carreras carreras);
 	List<DatosEscolares>findByUniversidades(Universidades universidades);
+	List<DatosEscolares>findByPeriodo(Periodo periodo);
+	List<DatosEscolares>findByModaliadesEscolares(ModalidadesEscolares modalidadesEscolares);
+	List<DatosEscolares>findByPlanEstudios(PlanEstudios planEstudios);
 }

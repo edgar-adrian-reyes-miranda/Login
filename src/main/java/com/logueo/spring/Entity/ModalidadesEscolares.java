@@ -1,5 +1,8 @@
 package com.logueo.spring.Entity;
 
-public class ModalidadesEscolares {
-
+public enum ModalidadesEscolares {
+	Escolarizada,
+	Abierta,
+	Ejecutiva,
+	En_linea
 }

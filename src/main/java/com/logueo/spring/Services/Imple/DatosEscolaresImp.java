@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.logueo.spring.Entity.Carreras;
 import com.logueo.spring.Entity.DatosEscolares;
+import com.logueo.spring.Entity.ModalidadesEscolares;
+import com.logueo.spring.Entity.Periodo;
+import com.logueo.spring.Entity.PlanEstudios;
 import com.logueo.spring.Entity.Universidades;
 import com.logueo.spring.Repository.DatosEscolaresRepository;
 import com.logueo.spring.Services.DatosEscolaresServices;
@@ -46,6 +49,21 @@ public class DatosEscolaresImp implements DatosEscolaresServices{
 	@Override
 	public List<DatosEscolares> findByUniversidades(Universidades universidades) {
 		return datosEscolaresRepository.findByUniversidades(universidades);
+	}
+
+	@Override
+	public List<DatosEscolares> findByPeriodo(Periodo periodo) {
+				return datosEscolaresRepository.findByPeriodo(periodo);
+	}
+
+	@Override
+	public List<DatosEscolares> findByModaliadesEscolares(ModalidadesEscolares modalidadesEscolares) {
+		return datosEscolaresRepository.findByModalidadesEscolares(modalidadesEscolares);
+	}
+
+	@Override
+	public List<DatosEscolares> findByPlanEstudios(PlanEstudios planEstudios) {
+		return datosEscolaresRepository.findByPlanEstudios(planEstudios);
 	}
 	
 
