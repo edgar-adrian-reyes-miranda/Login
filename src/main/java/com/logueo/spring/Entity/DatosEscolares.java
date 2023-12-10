@@ -1,5 +1,7 @@
 package com.logueo.spring.Entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 import lombok.*;
@@ -25,5 +27,6 @@ public class DatosEscolares {
 	private ModalidadesEscolares modalidadesEscolares;
 	@Enumerated(EnumType.STRING)
 	private PlanEstudios planEstudios;
-
+	@ManyToMany
+	private List<Datospersonales> datospersonales;
 }

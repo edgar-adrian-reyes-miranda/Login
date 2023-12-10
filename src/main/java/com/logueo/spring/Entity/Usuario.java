@@ -22,5 +22,7 @@ public class Usuario {
 	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario")
 	@JsonIgnore
 	private Set<UsurioRol> usuarioRoles = new HashSet<>() ;
-	 
+	@ManyToOne
+	@JoinColumn(name="datopersonale_id")
+	private Datospersonales datospersonales;
 }

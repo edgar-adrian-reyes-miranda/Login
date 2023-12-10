@@ -28,7 +28,7 @@ public class DatosPersonalesImp implements DatosPersonalesServices{
 
 	@Override
 	public Datospersonales guardar(Datospersonales nomnbre) throws Exception {
-               if (nomnbre.getNombre() == null) {
+               if (nomnbre.getUsuario() == null) {
             throw new Exception("El nombre no puede ser nulo");
         }
 
