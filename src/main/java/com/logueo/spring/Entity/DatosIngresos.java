@@ -13,8 +13,7 @@ public class DatosIngresos {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer id_ingreso;
-    @Enumerated(EnumType.STRING)
-    private Horarios horario;
+
     @Enumerated(EnumType.STRING)
     private Modalidad modalidad;
     @Lob

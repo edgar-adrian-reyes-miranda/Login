@@ -1,6 +1,19 @@
 package com.logueo.spring.Entity;
+import lombok.*;
+import jakarta.persistence.*;
 
-public enum Horarios {
-    horaro_de_9_am_a_2_pm,
-    horario_de_2_pm_6_pm
+import java.util.Date;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name="horarios")
+public class Horarios {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id_horario;
+    private String horario;
+
+
 }

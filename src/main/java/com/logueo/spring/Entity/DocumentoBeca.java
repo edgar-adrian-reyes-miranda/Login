@@ -2,7 +2,6 @@ package com.logueo.spring.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,6 +19,4 @@ public class DocumentoBeca {
     @ManyToOne
     @JoinColumn(name = "beca_id")
     private Beca beca;
-
-
 }

@@ -11,7 +11,7 @@ import java.util.*;
 public class DatosFTD {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_ftd;
+    private Long id_ftd;
     private String area;
     private String tutor;
     private Date fecha_inicio;

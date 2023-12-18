@@ -2,8 +2,6 @@ package com.logueo.spring.Entity;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
-
 import jakarta.persistence.*;
 
 @Data
