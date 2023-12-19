@@ -1,9 +1,7 @@
 package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.EnlaceDto;
-import com.logueo.spring.DTO.UnidadDto;
 import com.logueo.spring.Entity.Enlace;
-import com.logueo.spring.Entity.Unidad;
 import com.logueo.spring.Services.EnlaceServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/enlaces")
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class EnlaceControllers {
     @Autowired
@@ -23,14 +21,14 @@ public class EnlaceControllers {
     //mapeo para obtenes la lista de alumnos
     @GetMapping("/lista")
     @ResponseStatus(HttpStatus.OK)
-    public List<Enlace> obtenertodos(){
+    public List<Enlace> obtenertodosEnlace() {
         return enlaceServices.findAllenlace();
     }
 
     //mapeo para obtener alumnos por ID
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> consultarenlacePorID(@PathVariable Long id){
+    public ResponseEntity<?> consultarenlacesPorID(@PathVariable Long id){
         Enlace enlace = null;
         String response = "";
         try {
@@ -49,7 +47,7 @@ public class EnlaceControllers {
 
     //mapeo para crear alumno
     @PostMapping(path = "/guardar")
-    public ResponseEntity<?> crearenlace(@RequestBody EnlaceDto enlaceDto) {
+    public ResponseEntity<?> crearenlaces(@RequestBody EnlaceDto enlaceDto) {
         Enlace enlacenuevo = null;
         Map<String, Object> response = new HashMap<>();
 
@@ -69,7 +67,7 @@ public class EnlaceControllers {
 
     //mapeo para eliminar alumno
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarenlace(@PathVariable Long id) {
+    public ResponseEntity<?> eliminarenlaces(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
         try {
@@ -90,7 +88,7 @@ public class EnlaceControllers {
 
     //mapeo para editar un alumno
     @PutMapping("/editar/{id}")
-    public ResponseEntity<?> editarenlace(@PathVariable Long id, @RequestBody EnlaceDto enlaceDto) {
+    public ResponseEntity<?> editarenlaces(@PathVariable Long id, @RequestBody EnlaceDto enlaceDto) {
         Enlace enlaceditar= null;
         Map<String, Object> response = new HashMap<>();
 
@@ -106,7 +104,7 @@ public class EnlaceControllers {
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         response.put("mensaje", "Alumno actualizado con éxito, con el ID: " + id);
-        response.put("unidad", enlaceditar);
+        response.put("Enlace", enlaceditar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 }
