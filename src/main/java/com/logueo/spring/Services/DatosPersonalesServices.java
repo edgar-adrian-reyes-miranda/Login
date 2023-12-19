@@ -30,12 +30,15 @@ public class DatosPersonalesServices {
     @Transactional
     public Datospersonales creardatopersonal(DatosPersonalesDto datosPersonalesDto) {
         Datospersonales datospersonales= new Datospersonales ();
+        datospersonales.setNombre(datosPersonalesDto.getNombre());
         datospersonales.setDatosFTDs(datosPersonalesDto.getDatosFTDs());
-        datospersonales.setCurp(datosPersonalesDto.getCurp());
-        datospersonales.setGenero(datospersonales.getGenero());
-        datospersonales.setTelefonocasa(datosPersonalesDto.getTelefonocasa());
+        datospersonales.setCurp(datospersonales.getCurp());
         datospersonales.setUsuario(datosPersonalesDto.getUsuario());
-
+        datospersonales.setGenero(datosPersonalesDto.getGenero());
+        datospersonales.setTelefono(datosPersonalesDto.getTelefono());
+        datospersonales.setTelefonocasa(datosPersonalesDto.getTelefonocasa());
+        datospersonales.setP_apellido(datosPersonalesDto.getP_apellido());
+        datospersonales.setS_apellido(datosPersonalesDto.getS_apellido());
         return datosPersonalesRepository.save(datospersonales);
     }
 
@@ -50,12 +53,15 @@ public class DatosPersonalesServices {
     public Datospersonales editardatopersonal(Long id,DatosPersonalesDto datosPersonalesDto) {
         Datospersonales datospersonales= datosPersonalesRepository.findById(id).orElse(null);
         if(datospersonales != null) {
+            datospersonales.setS_apellido(datosPersonalesDto.getS_apellido());
+            datospersonales.setGenero(datosPersonalesDto.getGenero());
+            datospersonales.setCurp(datosPersonalesDto.getCurp());
+            datospersonales.setTelefonocasa(datosPersonalesDto.getTelefonocasa());
+            datospersonales.setTelefono(datosPersonalesDto.getTelefono());
             datospersonales.setUsuario(datosPersonalesDto.getUsuario());
             datospersonales.setDatosFTDs(datosPersonalesDto.getDatosFTDs());
-            datospersonales.setCurp(datosPersonalesDto.getCurp());
-            datospersonales.setGenero(datospersonales.getGenero());
-            datospersonales.setTelefonocasa(datosPersonalesDto.getTelefonocasa());
-
+            datospersonales.setNombre(datosPersonalesDto.getNombre());
+            datospersonales.setP_apellido(datosPersonalesDto.getP_apellido());
             return datosPersonalesRepository.save(datospersonales);
         }else {
             return null;
