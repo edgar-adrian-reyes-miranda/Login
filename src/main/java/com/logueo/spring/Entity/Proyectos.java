@@ -12,7 +12,7 @@ import java.util.List;
 public class Proyectos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_proyecto;
+    private Long id_proyecto;
     private String nombre;
     private String avance;
     private int evaluacion;

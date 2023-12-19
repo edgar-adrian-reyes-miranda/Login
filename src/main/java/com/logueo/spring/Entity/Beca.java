@@ -12,7 +12,7 @@ import java.util.List;
 public class Beca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_beca;
+    private Long id_beca;
     private String nombre_beca;
     private String Monto;
 

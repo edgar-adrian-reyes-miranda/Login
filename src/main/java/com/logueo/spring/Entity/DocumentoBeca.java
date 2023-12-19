@@ -11,7 +11,7 @@ import lombok.*;
 public class DocumentoBeca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_documento;
+    private Long id_documento;
     @Lob
     private byte[] pago;
     @Lob

@@ -29,8 +29,8 @@ public class CursosServices {
     public Cursos crearcurso(CursosDto cursosDto){
          Cursos cursos= new Cursos();
          cursos.setNombre(cursosDto.getNombre());
-         cursos.setUnidades((List<Unidad>) cursosDto.getUnidades());
-         cursos.setDatosFTDS((List<DatosFTD>) cursosDto.getDatosFTD());
+         cursos.setUnidades(cursosDto.getUnidades());
+         cursos.setDatosFTDS(cursosDto.getDatosFTDS());
          return cursosRepository.save(cursos);
     }
     @Transactional
@@ -41,8 +41,8 @@ public class CursosServices {
     public Cursos editarcurso(Long id, CursosDto cursodto) {
             Cursos cursos = cursosRepository.findById(id).orElse(null);
             if (cursos != null) {
-                cursos.setDatosFTDS((List<DatosFTD>) cursodto.getDatosFTD());
-                cursos.setUnidades((List<Unidad>) cursodto.getUnidades());
+                cursos.setDatosFTDS(cursodto.getDatosFTDS());
+                cursos.setUnidades(cursodto.getUnidades());
                 cursos.setNombre(cursodto.getNombre());
                 return cursosRepository.save(cursos);
             }else{

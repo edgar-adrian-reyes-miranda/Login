@@ -12,7 +12,7 @@ import java.util.List;
 public class Enlace {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_enlace;
+    private Long id_enlace;
     private String tipo_enlace;
     @OneToMany(mappedBy = "enlace", cascade =  CascadeType.ALL)
     private List<DatosFTD> datosFTDS;
