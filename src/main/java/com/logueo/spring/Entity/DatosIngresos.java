@@ -6,12 +6,11 @@ import jakarta.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="cursos")
-public class Cursos {
+@Table(name="ingresos")
+public class DatosIngresos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_curso;
-    private String nombre;
-    private String tipo_estatus;
-    private String unidad;
+    private Long id_ingreso;
+    private String cv;
+    private String historial_Academico;
 }

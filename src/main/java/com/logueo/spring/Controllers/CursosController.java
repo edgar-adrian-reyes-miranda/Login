@@ -2,18 +2,14 @@ package com.logueo.spring.Controllers;
 
 
 import com.logueo.spring.DTO.CursosDto;
-import com.logueo.spring.Entity.Cursos;
 import com.logueo.spring.Services.CursosServices;
-import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.IllegalFormatCodePointException;
 import java.util.List;
 import java.util.Map;
 

@@ -1,7 +1,6 @@
 package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.DocumentoBecaDto;
-import com.logueo.spring.Entity.DocumentoBeca;
 import com.logueo.spring.Services.DocumentoBecaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

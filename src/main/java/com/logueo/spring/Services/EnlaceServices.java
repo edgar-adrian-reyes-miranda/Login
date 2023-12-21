@@ -1,7 +1,6 @@
 package com.logueo.spring.Services;
 
 import com.logueo.spring.DTO.EnlaceDto;
-import com.logueo.spring.Entity.Enlace;
 import com.logueo.spring.Repository.EnlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

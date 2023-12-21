@@ -1,7 +1,6 @@
 package com.logueo.spring.Services;
 
 import com.logueo.spring.DTO.DatosFTDDto;
-import com.logueo.spring.Entity.DatosFTD;
 import com.logueo.spring.Repository.DatosFTDRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

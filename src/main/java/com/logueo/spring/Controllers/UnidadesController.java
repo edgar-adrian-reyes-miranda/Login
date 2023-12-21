@@ -1,7 +1,6 @@
 package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.UnidadDto;
-import com.logueo.spring.Entity.Unidad;
 import com.logueo.spring.Services.UnidadServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

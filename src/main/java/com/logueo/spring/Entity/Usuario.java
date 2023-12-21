@@ -15,9 +15,6 @@ public class Usuario {
 	private Integer id;
 	private String username;
 	private String password;
-	private String nombre;
-	private String p_apellido;
-	private String s_apellido;
 	private String correo;
 	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario")
 	@JsonIgnore

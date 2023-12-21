@@ -1,18 +1,14 @@
 package com.logueo.spring.Entity;
 import lombok.*;
 import jakarta.persistence.*;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="estausInfotec")
-public class EstausInfotec {
+@Table(name="periodo")
+public class Periodo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_estaus;
-    private String tipo_estatus;
-    @ManyToOne
-    @JoinColumn(name="ftd_id")
-    private DatosFTD datosFTD;
+    private Long id_periodo;
+    private String tipo_periodo;
 }

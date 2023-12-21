@@ -1,17 +1,14 @@
 package com.logueo.spring.Entity;
-
 import lombok.*;
 import jakarta.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="cursos")
-public class Cursos {
+@Table(name="planes")
+public class PlanEducativo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_curso;
+    private Long id_plan;
     private String nombre;
-    private String tipo_estatus;
-    private String unidad;
 }

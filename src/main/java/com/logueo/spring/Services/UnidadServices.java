@@ -1,7 +1,6 @@
 package com.logueo.spring.Services;
 
 import com.logueo.spring.DTO.UnidadDto;
-import com.logueo.spring.Entity.Unidad;
 import com.logueo.spring.Repository.UnidadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

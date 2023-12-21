@@ -1,6 +1,5 @@
 package com.logueo.spring.DTO;
 
-import com.logueo.spring.Entity.DatosFTD;
 import java.io.Serializable;
 import java.util.List;
 import lombok.*;

@@ -1,7 +1,6 @@
 package com.logueo.spring.Services;
 
 import com.logueo.spring.DTO.BecaDto;
-import com.logueo.spring.Entity.Beca;
 import com.logueo.spring.Repository.BecaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
