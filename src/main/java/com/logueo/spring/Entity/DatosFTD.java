@@ -15,8 +15,8 @@ public class DatosFTD {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_ftd;
     private String area;
-    private Date fehca_ingreso;
+    private Date fecha_ingreso;
     private Date fecha_termino;
     private String correo_becario;
-    private int matriculaftd;
+    private int matricula_ftd;
 }

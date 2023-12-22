@@ -1,19 +1,20 @@
 package com.logueo.spring.Services;
 
 import com.logueo.spring.DTO.BecaDto;
+import com.logueo.spring.Entity.Beca;
 import com.logueo.spring.Repository.BecaRepository;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Service
 public class BecaServices {
     @Autowired
-    private BecaRepository  becaRepository;
-
-    //Obtener todos los alumnos
+    private BecaRepository becaRepository;
+      //Obtener todos los alumnos
     @Transactional(readOnly = true)
     public List<Beca> findAllbeca(){
         return becaRepository.findAll();
@@ -29,10 +30,10 @@ public class BecaServices {
     @Transactional
     public Beca crearbeca(BecaDto becaDto) {
         Beca becas= new Beca ();
-        becas.setDocumentoBecas(becaDto.getDocumentoBecas());
-        becas.setNombre_beca(becaDto.getNombre_beca());
-        becas.setMonto(becaDto.getMonto());
-        becas.setDatosFTDs(becaDto.getDatosFTDs());
+        becas.setCuenta(becaDto.getCuenta());
+        becas.setDocumento(becaDto.getDocumento());
+        becas.setPago(becaDto.getPago());
+        becas.setNombre(becaDto.getNombre());
         return becaRepository.save(becas);
     }
 
@@ -47,10 +48,10 @@ public class BecaServices {
     public Beca editarbeca(Long id, BecaDto becaDto) {
         Beca beca = becaRepository.findById(id).orElse(null);
         if(beca != null) {
-          beca.setDatosFTDs(becaDto.getDatosFTDs());
-          beca.setNombre_beca(becaDto.getNombre_beca());
-          beca.setMonto(becaDto.getMonto());
-          beca.setDocumentoBecas(becaDto.getDocumentoBecas());
+          beca.setCuenta(becaDto.getCuenta());
+          beca.setDocumento(becaDto.getDocumento());
+          beca.setPago(becaDto.getPago());
+          beca.setNombre(becaDto.getNombre());
             return becaRepository.save(beca);
         }else {
             return null;

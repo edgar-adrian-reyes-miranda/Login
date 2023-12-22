@@ -12,7 +12,7 @@ import java.util.*;
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	private String username;
 	private String password;
 	private String correo;
@@ -21,5 +21,5 @@ public class Usuario {
 	private Set<UsurioRol> usuarioRoles = new HashSet<>() ;
 	@ManyToOne
 	@JoinColumn(name="datopersonale_id")
-	private Datospersonales datospersonales;
+	private DatosPersonales datospersonales;
 }
