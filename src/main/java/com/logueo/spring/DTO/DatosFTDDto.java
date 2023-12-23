@@ -2,8 +2,6 @@ package com.logueo.spring.DTO;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import com.logueo.spring.Entity.*;
 import lombok.*;
 @Data
 public class DatosFTDDto implements Serializable {

@@ -14,7 +14,7 @@ public class PeriodoController {
     @Autowired
     private PeriodoServices periodoServices;
     //mapeo para obtenes la lista de alumnos
-    @GetMapping("/lista")
+    @GetMapping(path={"/lista"})
     @ResponseStatus(HttpStatus.OK)
     public List<Periodo> obtenertodos(){
         return periodoServices.findAllPeriodo();
