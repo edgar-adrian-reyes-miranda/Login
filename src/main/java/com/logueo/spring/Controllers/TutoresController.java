@@ -14,7 +14,7 @@ import java.util.List;
 public class TutoresController {
     @Autowired
     private TutoresServices tutoresServices;
-    @GetMapping("/lista")
+    @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<Tutores> obtenertodos(){
         return tutoresServices.findAllTurtor();

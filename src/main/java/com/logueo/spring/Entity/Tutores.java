@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="turor")
+@Table(name="tutor")
 public class Tutores {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

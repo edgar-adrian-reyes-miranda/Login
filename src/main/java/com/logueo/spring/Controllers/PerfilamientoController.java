@@ -1,62 +1,61 @@
 package com.logueo.spring.Controllers;
 
-import com.logueo.spring.DTO.GruposDto;
-import com.logueo.spring.Entity.Grupos;
-import com.logueo.spring.Services.GrupoServices;
+import com.logueo.spring.DTO.PerfilamientoDto;
+import com.logueo.spring.Entity.Perfilamiento;
+import com.logueo.spring.Services.PerfilamientoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.*;
 import java.util.*;
-
-@RestController
-@RequestMapping("/api/grupos")
 @CrossOrigin(origins = {"http://localhost:4200"})
-public class GruposController {
+@RestController
+@RequestMapping("/api/perfilamiento")
+public class PerfilamientoController {
     @Autowired
-    private GrupoServices grupoServices;
+    private PerfilamientoServices perfilamientoServices;
 
     //mapeo para obtenes la lista de alumnos
-    @GetMapping(path = "/lista")
+    @GetMapping("/lista")
     @ResponseStatus(HttpStatus.OK)
-    public List<Grupos> obtenertodos(){
-        return grupoServices.findAllGrupo();
+    public List<Perfilamiento> obtenertodos(){
+        return perfilamientoServices.findAllPerfilamiento();
     }
 
     //mapeo para obtener alumnos por ID
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
-        Grupos grupo= null;
+        Perfilamiento perfil= null;
         String response = "";
         try {
-            grupo= grupoServices.findByIdGrupos(id);
+            perfil=perfilamientoServices.findByIdPerfilamiento(id);
         } catch (Exception e) {
             response = "Error al realizar la consulta. Detalles: ";
             response = response.concat(e.getMessage().concat(e.getMessage().toString()));
             return new ResponseEntity<String>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if (grupo == null) {
+        if (perfil == null) {
             response = "El alumno con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
             return new ResponseEntity<String>(response, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Grupos>(grupo, HttpStatus.OK);
+        return new ResponseEntity<Perfilamiento>(perfil, HttpStatus.OK);
     }
 
     //mapeo para crear alumno
     @PostMapping(path = "/guardar")
-    public ResponseEntity<?> crearbeca(@RequestBody GruposDto becaDto) {
-        Grupos  Nuevo = null;
+    public ResponseEntity<?> crearbeca(@RequestBody PerfilamientoDto becaDto) {
+        Perfilamiento  Nuevo = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            Nuevo= this.grupoServices.crearGrupos(becaDto);
+            Nuevo= this.perfilamientoServices.crearPerfilamiento(becaDto);
         } catch (Exception e) {
             response.put("mensaje", "Error al realizar el insert. Detalles: ");
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "Alumno creado con éxito, con el ID: " + Nuevo.getId_grupo());
-        response.put("Grupo", Nuevo);
+        response.put("mensaje", "Alumno creado con éxito, con el ID: " + Nuevo.getId_perfilamiento());
+        response.put("Perfilamiento", Nuevo);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
@@ -64,13 +63,14 @@ public class GruposController {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
+
         try {
-            Grupos delete= this.grupoServices.findByIdGrupos(id);
+            Perfilamiento delete= this.perfilamientoServices.findByIdPerfilamiento(id);
             if (delete == null) {
                 response.put("mensaje", "Error al eliminar. El alumno no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
-            grupoServices.eliminarGrupos(id);
+            perfilamientoServices.eliminarPerfilamiento(id);
         } catch (Exception e) {
             response.put("mensaje", "Error al eliminar en base de datos. Detalles: ");
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
@@ -81,12 +81,13 @@ public class GruposController {
     }
 
     //mapeo para editar un alumno
-    @PutMapping(path = "/editar/{id}")
-    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody GruposDto becaDto) {
-        Grupos Editar = null;
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody PerfilamientoDto becaDto) {
+        Perfilamiento Editar = null;
         Map<String, Object> response = new HashMap<>();
+
         try {
-            Editar= this.grupoServices.editarGrupos(id, becaDto);
+            Editar= this.perfilamientoServices.editarPerfilamiento(id, becaDto);
             if (Editar == null) {
                 response.put("mensaje", "Error al editar. El alumno no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
@@ -97,7 +98,7 @@ public class GruposController {
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         response.put("mensaje", "Alumno actualizado con éxito, con el ID: " + id);
-        response.put("Grupos", Editar);
+        response.put("Perfilamiento",Editar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 }

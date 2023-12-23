@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="undersides")
+@Table(name="universidades")
 public class Universidades{
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
