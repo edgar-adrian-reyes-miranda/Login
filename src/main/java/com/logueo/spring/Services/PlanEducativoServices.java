@@ -18,35 +18,5 @@ public class PlanEducativoServices {
         return planEstudiosRepository.findAll();
     }
 
-    //Consultar alumnos por id
-    @Transactional(readOnly = true)
-    public PlanEducativo findByIdPlanEducativo(Long id) {
-        return planEstudiosRepository.findById(id).orElse(null);
-    }
 
-    //Crear alumno
-    @Transactional
-    public PlanEducativo crearPlanEducativo(PlanEducativoDto PlanEducativoDto) {
-        PlanEducativo PlanEducativos= new PlanEducativo ();
-        PlanEducativos.setNombre(PlanEducativoDto.getNombre());
-        return planEstudiosRepository.save(PlanEducativos);
-    }
-
-    //Eliminar
-    @Transactional
-    public void eliminarPlanEducativo(Long id) {
-        planEstudiosRepository.deleteById(id);
-    }
-
-    //Editar
-    @Transactional
-    public PlanEducativo editarPlanEducativo(Long id, PlanEducativoDto PlanEducativoDto) {
-        PlanEducativo PlanEducativo = planEstudiosRepository.findById(id).orElse(null);
-        if(PlanEducativo != null) {
-          PlanEducativo.setNombre(PlanEducativoDto.getNombre());
-          return planEstudiosRepository.save(PlanEducativo);
-        }else {
-            return null;
-        }
-    }
 }

@@ -20,35 +20,4 @@ public class HorarioServices {
         return horariosRepository.findAll();
     }
 
-    //Consultar alumnos por id
-    @Transactional(readOnly = true)
-    public Horarios findByIdHorarios(Long id) {
-        return horariosRepository.findById(id).orElse(null);
-    }
-
-    //Crear alumno
-    @Transactional
-    public Horarios crearHorarios(HorariosDto HorariosDto) {
-        Horarios Horarioss= new Horarios ();
-        Horarioss.setHoraio(HorariosDto.getHorario());
-        return horariosRepository.save(Horarioss);
-    }
-
-    //Eliminar
-    @Transactional
-    public void eliminarHorarios(Long id) {
-        horariosRepository.deleteById(id);
-    }
-
-    //Editar
-    @Transactional
-    public Horarios editarHorarios(Long id, HorariosDto HorariosDto) {
-        Horarios Horarios = horariosRepository.findById(id).orElse(null);
-        if(Horarios != null) {
-          Horarios.setHoraio(HorariosDto.getHorario());
-            return horariosRepository.save(Horarios);
-        }else {
-            return null;
-        }
-    }
 }

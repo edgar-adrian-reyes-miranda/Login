@@ -18,35 +18,4 @@ public class PeriodoServices {
         return periodoRepository.findAll();
     }
 
-    //Consultar alumnos por id
-    @Transactional(readOnly = true)
-    public Periodo findByIdPeriodo(Long id) {
-        return periodoRepository.findById(id).orElse(null);
-    }
-
-    //Crear alumno
-    @Transactional
-    public Periodo crearPeriodo(PeriodoDto PeriodoDto) {
-        Periodo Periodos= new Periodo ();
-        Periodos.setTipo_periodo(PeriodoDto.getTipo_periodo());
-        return periodoRepository.save(Periodos);
-    }
-
-    //Eliminar
-    @Transactional
-    public void eliminarPeriodo(Long id) {
-        periodoRepository.deleteById(id);
-    }
-
-    //Editar
-    @Transactional
-    public Periodo editarPeriodo(Long id, PeriodoDto PeriodoDto) {
-        Periodo Periodo = periodoRepository.findById(id).orElse(null);
-        if(Periodo != null) {
-          Periodo.setTipo_periodo(PeriodoDto.getTipo_periodo());
-            return periodoRepository.save(Periodo);
-        }else {
-            return null;
-        }
-    }
 }

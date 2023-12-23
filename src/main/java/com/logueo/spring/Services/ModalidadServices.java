@@ -19,35 +19,5 @@ public class ModalidadServices {
         return modalidadRepository.findAll();
     }
 
-    //Consultar alumnos por id
-    @Transactional(readOnly = true)
-    public Modalidad findByIdModalidad(Long id) {
-        return modalidadRepository.findById(id).orElse(null);
-    }
 
-    //Crear alumno
-    @Transactional
-    public Modalidad crearModalidad(ModalidadDto ModalidadDto) {
-        Modalidad Modalidads= new Modalidad ();
-        Modalidads.setTipo_modalidad(ModalidadDto.getTipo_modalidad());
-        return modalidadRepository.save(Modalidads);
-    }
-
-    //Eliminar
-    @Transactional
-    public void eliminarModalidad(Long id) {
-        modalidadRepository.deleteById(id);
-    }
-
-    //Editar
-    @Transactional
-    public Modalidad editarModalidad(Long id, ModalidadDto ModalidadDto) {
-        Modalidad Modalidad = modalidadRepository.findById(id).orElse(null);
-        if(Modalidad != null) {
-          Modalidad.setTipo_modalidad(ModalidadDto.getTipo_modalidad());
-            return modalidadRepository.save(Modalidad);
-        }else {
-            return null;
-        }
-    }
 }

@@ -10,6 +10,6 @@ import jakarta.persistence.*;
 public class Horarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long horario;
-    private String horaio;
+    private Long id_horario;
+    private String horario;
 }
