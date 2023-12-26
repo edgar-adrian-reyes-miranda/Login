@@ -27,4 +27,5 @@ public class DatosPersonales {
     @Size(max=10, message = "El maximo de numero son 10 digitos")
     private int telefono_casa;
     private String correo;
+    
 }

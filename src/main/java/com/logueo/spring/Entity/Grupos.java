@@ -2,6 +2,8 @@ package com.logueo.spring.Entity;
 
 import lombok.*;
 import jakarta.persistence.*;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,4 +14,5 @@ public class Grupos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_grupo;
     private String nombre;
+
 }

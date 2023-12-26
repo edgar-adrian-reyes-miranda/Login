@@ -16,7 +16,7 @@ public class PlanEducativoController {
     @Autowired
     private PlanEducativoServices planEducativoServices;
     //mapeo para obtenes la lista de alumnos
-    @GetMapping("/lista")
+    @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<PlanEducativo> obtenertodos(){
         return planEducativoServices.findAllPlanes();

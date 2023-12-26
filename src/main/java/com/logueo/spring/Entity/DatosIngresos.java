@@ -2,6 +2,8 @@ package com.logueo.spring.Entity;
 
 import lombok.*;
 import jakarta.persistence.*;
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,4 +15,8 @@ public class DatosIngresos {
     private Long id_ingreso;
     private String cv;
     private String historial_Academico;
+    @ManyToOne
+    @JoinColumn(name="tramite_id")
+    private Tramite tramite;
+
 }

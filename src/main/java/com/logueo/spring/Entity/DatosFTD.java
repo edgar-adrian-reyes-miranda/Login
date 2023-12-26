@@ -4,6 +4,7 @@ import lombok.*;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,4 +20,15 @@ public class DatosFTD {
     private Date fecha_termino;
     private String correo_becario;
     private int matricula_ftd;
+    private String beca;
+    private String becadocumenot;
+    
+    @ManyToOne
+    @JoinColumn(name="curso_id")
+    private Cursos cursos;
+
+    @ManyToOne
+    @JoinColumn(name="estatus_id", nullable = false, updatable = false)
+    private EstatusInfotec estatusInfotec;
+
 }

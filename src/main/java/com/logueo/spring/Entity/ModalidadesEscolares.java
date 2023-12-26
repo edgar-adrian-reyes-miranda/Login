@@ -2,6 +2,9 @@ package com.logueo.spring.Entity;
 
 import lombok.*;
 import jakarta.persistence.*;
+
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,5 +15,6 @@ public class ModalidadesEscolares {
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long id_modalidad;
     private String tipo_modadlidad;
+
 
 }

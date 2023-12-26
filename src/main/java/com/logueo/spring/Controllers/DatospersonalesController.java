@@ -2,7 +2,6 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.DatosPersonalesDto;
 import com.logueo.spring.Entity.DatosPersonales;
-import com.logueo.spring.Services.DatosEscolaresServices;
 import com.logueo.spring.Services.DatospersonalesServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

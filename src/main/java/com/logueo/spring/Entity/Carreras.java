@@ -2,6 +2,9 @@ package com.logueo.spring.Entity;
 
 import lombok.*;
 import jakarta.persistence.*;
+
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,5 +15,7 @@ public class Carreras {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_carrera;
     private String nombre;
+    @OneToMany
+    private List<DatosEscolares>datosEscolares;
 
 }

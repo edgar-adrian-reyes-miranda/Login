@@ -1,6 +1,9 @@
 package com.logueo.spring.Entity;
+
 import lombok.*;
 import jakarta.persistence.*;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -11,4 +14,5 @@ public class Periodo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_periodo;
     private String tipo_periodo;
+
 }

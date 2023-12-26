@@ -2,6 +2,9 @@ package com.logueo.spring.Entity;
 
 import lombok.*;
 import jakarta.persistence.*;
+
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,4 +15,5 @@ public class Perfilamiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_perfilamiento;
     private String nombre;
+
 }

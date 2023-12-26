@@ -2,6 +2,9 @@ package com.logueo.spring.Entity;
 
 import lombok.*;
 import jakarta.persistence.*;
+
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,4 +17,5 @@ public class Proyectos {
     private String nombre;
     private String avance;
     private String evaluacion;
+
 }

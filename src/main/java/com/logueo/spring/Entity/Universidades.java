@@ -13,4 +13,5 @@ public class Universidades{
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id_uni;
         private String nombre;
+
 }
