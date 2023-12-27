@@ -39,7 +39,7 @@ public class DatospersonalesServices {
         DatosPersonaless.setS_apellido(DatosPersonalesDto.getS_apellido());
         DatosPersonaless.setTelefono(DatosPersonalesDto.getTelefono());
         DatosPersonaless.setTelefono_casa(DatosPersonalesDto.getTelefono_casa());
-        
+        DatosPersonaless.setGenero(DatosPersonalesDto.getGenero());
         return datosPersonalesRepository.save(DatosPersonaless);
     }
 
@@ -63,6 +63,7 @@ public class DatospersonalesServices {
           DatosPersonales.setS_apellido(DatosPersonalesDto.getS_apellido());
           DatosPersonales.setTelefono(DatosPersonalesDto.getTelefono());
           DatosPersonales.setTelefono_casa(DatosPersonalesDto.getTelefono_casa());
+          DatosPersonales.setGenero(DatosPersonalesDto.getGenero());
             return datosPersonalesRepository.save(DatosPersonales);
         }else {
             return null;

@@ -16,14 +16,14 @@ public class DatospersonalesController {
     private DatospersonalesServices datospersonalesServices;
 
     //mapeo para obtenes la lista de alumnos
-    @GetMapping("/lista")
+    @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<DatosPersonales> obtenertodos(){
         return datospersonalesServices.findAllPersonal();
     }
 
     //mapeo para obtener alumnos por ID
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
         DatosPersonales personal= null;
@@ -52,7 +52,11 @@ public class DatospersonalesController {
             personalNuevo= this.datospersonalesServices.crearDatosPersonales(becaDto);
         } catch (Exception e) {
             response.put("mensaje", "Error al realizar el insert. Detalles: ");
-            response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
+            if(e.getCause() != null){
+                response.put("Error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
+            }else{
+                response.put("Error", e.getMessage());
+            }
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         response.put("mensaje", "Alumno creado con éxito, con el ID: " + personalNuevo.getId_person());
@@ -61,7 +65,7 @@ public class DatospersonalesController {
     }
 
     //mapeo para eliminar alumno
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
@@ -82,7 +86,7 @@ public class DatospersonalesController {
     }
 
     //mapeo para editar un alumno
-    @PutMapping("/editar/{id}")
+    @PutMapping(path = "/editar/{id}")
     public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody DatosPersonalesDto becaDto) {
         DatosPersonales personalEditar = null;
         Map<String, Object> response = new HashMap<>();
