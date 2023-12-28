@@ -16,14 +16,14 @@ public class TramiteController {
     private TramiteServices tramiteServices;
 
     //mapeo para obtenes la lista de alumnos
-    @GetMapping("/lista")
+    @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<Tramite> obtenertodos(){
         return tramiteServices.findAllTramite();
     }
 
     //mapeo para obtener alumnos por ID
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
         Tramite tramite= null;
@@ -63,7 +63,7 @@ public class TramiteController {
     }
 
     //mapeo para eliminar alumno
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
@@ -84,7 +84,7 @@ public class TramiteController {
     }
 
     //mapeo para editar un alumno
-    @PutMapping("/editar/{id}")
+    @PutMapping(path = "/editar/{id}")
     public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody TramiteDto becaDto) {
         Tramite Editar = null;
         Map<String, Object> response = new HashMap<>();

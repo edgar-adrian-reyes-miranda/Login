@@ -15,7 +15,7 @@ public class PerfilamientoController {
     private PerfilamientoServices perfilamientoServices;
 
     //mapeo para obtenes la lista de alumnos
-    @GetMapping("/lista")
+    @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<Perfilamiento> obtenertodos(){
         return perfilamientoServices.findAllPerfilamiento();
@@ -101,4 +101,16 @@ public class PerfilamientoController {
         response.put("Perfilamiento",Editar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
+/*
+    @PatchMapping(path = "/perfil/{id}/estado")
+    public ResponseEntity<String> cambiarEstado(@PathVariable Long id, @RequestBody Map<String , Boolean> requestBody){
+        Boolean activo = requestBody.get("Activo");
+       if (activo!= null){
+           perfilamientoServices.cambiarestadoperfil(id,activo);
+           return ResponseEntity.ok().build();
+       }else{
+           return ResponseEntity.badRequest().body("El campo 'activo'no puede ser nulo");
+       }
+    }
+*/
 }
