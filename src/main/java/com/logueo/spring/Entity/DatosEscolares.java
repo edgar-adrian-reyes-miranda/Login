@@ -13,9 +13,7 @@ public class DatosEscolares {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_escolar;
-    private int matricula;
+    private String matricula;
     private String correo_inst;
-    @ManyToOne
-    @JoinColumn(name="carrera_id")
-    private Carreras carrerasList;
+    private String carrera;
 }

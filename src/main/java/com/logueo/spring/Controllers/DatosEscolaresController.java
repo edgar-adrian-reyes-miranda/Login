@@ -19,14 +19,14 @@ public class DatosEscolaresController {
     private DatosEscolaresServices datosEscolaresServices;
 
     //mapeo para obtenes la lista de alumnos
-    @GetMapping("/lista")
+    @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<DatosEscolares> obtenertodos(){
         return datosEscolaresServices.findAllEscolares();
     }
 
     //mapeo para obtener alumnos por ID
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
         DatosEscolares beca= null;
@@ -66,7 +66,7 @@ public class DatosEscolaresController {
     }
 
     //mapeo para eliminar alumno
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
@@ -87,7 +87,7 @@ public class DatosEscolaresController {
     }
 
     //mapeo para editar un alumno
-    @PutMapping("/editar/{id}")
+    @PutMapping(path = "/editar/{id}")
     public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody DatosEscolaresDto becaDto) {
         DatosEscolares becaEditar = null;
         Map<String, Object> response = new HashMap<>();

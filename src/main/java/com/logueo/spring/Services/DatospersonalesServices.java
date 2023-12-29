@@ -40,6 +40,8 @@ public class DatospersonalesServices {
         DatosPersonaless.setTelefono(DatosPersonalesDto.getTelefono());
         DatosPersonaless.setTelefono_casa(DatosPersonalesDto.getTelefono_casa());
         DatosPersonaless.setGenero(DatosPersonalesDto.getGenero());
+        DatosPersonaless.setEstados(DatosPersonalesDto.getEstados());
+        DatosPersonaless.setMunicipio(DatosPersonalesDto.getMunicipio());
         return datosPersonalesRepository.save(DatosPersonaless);
     }
 
@@ -64,6 +66,8 @@ public class DatospersonalesServices {
           DatosPersonales.setTelefono(DatosPersonalesDto.getTelefono());
           DatosPersonales.setTelefono_casa(DatosPersonalesDto.getTelefono_casa());
           DatosPersonales.setGenero(DatosPersonalesDto.getGenero());
+          DatosPersonales.setMunicipio(DatosPersonalesDto.getMunicipio());
+          DatosPersonales.setEstados(DatosPersonalesDto.getEstados());
             return datosPersonalesRepository.save(DatosPersonales);
         }else {
             return null;

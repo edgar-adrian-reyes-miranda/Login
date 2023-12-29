@@ -20,6 +20,8 @@ public class DatosPersonales {
     @Size(max=18, message = "EL numero de caracteres de CURP son 18")
     private String curp;
     private String direccion;
+    private String estados;
+    private String municipio;
     @Min(value = 10, message = "Ingrese su edad")
     private Integer edad;
     @Digits(integer=10, fraction=0, message ="El maximo de numero de digitos son 10" )

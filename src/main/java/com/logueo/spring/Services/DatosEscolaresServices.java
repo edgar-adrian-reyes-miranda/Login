@@ -31,6 +31,7 @@ public class DatosEscolaresServices {
         DatosEscolares DatosEscolaress= new DatosEscolares ();
         DatosEscolaress.setCorreo_inst(DatosEscolaresDto.getCorreo_inst());
         DatosEscolaress.setMatricula(DatosEscolaresDto.getMatricula());
+        DatosEscolaress.setCarrera(DatosEscolaresDto.getCarrera());
         return datosEscolaresRepository.save(DatosEscolaress);
     }
 
@@ -47,6 +48,7 @@ public class DatosEscolaresServices {
         if(DatosEscolares != null) {
           DatosEscolares.setCorreo_inst(DatosEscolaresDto.getCorreo_inst());
           DatosEscolares.setMatricula(DatosEscolaresDto.getMatricula());
+          DatosEscolares.setCarrera(DatosEscolaresDto.getCarrera());
             return datosEscolaresRepository.save(DatosEscolares);
         }else {
             return null;

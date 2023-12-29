@@ -15,7 +15,6 @@ public class Carreras {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_carrera;
     private String nombre;
-    @OneToMany
-    private List<DatosEscolares>datosEscolares;
+
 
 }

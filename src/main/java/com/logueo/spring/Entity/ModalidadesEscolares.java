@@ -15,6 +15,4 @@ public class ModalidadesEscolares {
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long id_modalidad;
     private String tipo_modadlidad;
-
-
 }
