@@ -2,9 +2,8 @@ package com.logueo.spring.Entity;
 
 import lombok.*;
 import jakarta.persistence.*;
-
 import java.util.Date;
-import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -30,5 +29,8 @@ public class DatosFTD {
     @ManyToOne
     @JoinColumn(name="estatus_id", nullable = false, updatable = false)
     private EstatusInfotec estatusInfotec;
+    @ManyToOne
+    @JoinColumn(name="person_id")
+    private DatosPersonales datosPersonales;
 
 }

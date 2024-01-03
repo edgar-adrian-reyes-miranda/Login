@@ -43,7 +43,7 @@ public class DatospersonalesController {
     }
 
     //mapeo para crear alumno
-    @PostMapping(path = "/guardar")
+    @PostMapping(path = {"/guardar"})
     public ResponseEntity<?> crearbeca(@RequestBody DatosPersonalesDto becaDto) {
         DatosPersonales  personalNuevo = null;
         Map<String, Object> response = new HashMap<>();

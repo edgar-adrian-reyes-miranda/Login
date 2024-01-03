@@ -23,7 +23,8 @@ public class DatospersonalesServices {
     //Consultar alumnos por id
     @Transactional(readOnly = true)
     public DatosPersonales findByIdDatosPersonales(Long id) {
-        return datosPersonalesRepository.findById(id).orElse(null);
+        DatosPersonales datosPersonales= datosPersonalesRepository.findById(id).orElse(null);
+        return  datosPersonales;
     }
 
     //Crear alumno

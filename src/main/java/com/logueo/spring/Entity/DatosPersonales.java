@@ -3,6 +3,7 @@ package com.logueo.spring.Entity;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import jakarta.persistence.*;
+import java.util.*;
 
 
 @Data
@@ -12,7 +13,7 @@ import jakarta.persistence.*;
 @Table(name="personales")
 public class DatosPersonales {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_person;
     private String nombre;
     private String p_apellido;
@@ -30,5 +31,11 @@ public class DatosPersonales {
     private Long telefono_casa;
     private String correo;
     private String genero;
-    
+    @OneToMany(mappedBy = "datosPersonales")
+    private Set<DatosIngresos> ingresos= new HashSet<>();
+    @OneToMany(mappedBy = "datosPersonales")
+    private Set<DatosFTD> ftd= new HashSet<>();
+    @OneToMany(mappedBy = "datosPersonales")
+    private Set<DatosEscolares> escolares= new HashSet<>();
+
 }

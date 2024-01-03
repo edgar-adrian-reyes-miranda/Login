@@ -1,10 +1,12 @@
 package com.logueo.spring.DTO;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.*;
 
+import com.logueo.spring.Entity.DatosEscolares;
 import com.logueo.spring.Entity.DatosFTD;
-import com.logueo.spring.Entity.Usuario;
+import com.logueo.spring.Entity.DatosIngresos;
+
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
@@ -29,4 +31,7 @@ public class DatosPersonalesDto implements Serializable {
     private Long telefono_casa;
     private String correo;
     private String genero;
+    private Set<DatosIngresos> ingresos= new HashSet<>();
+    private Set<DatosFTD> ftd= new HashSet<>();
+    private Set<DatosEscolares> escolares= new HashSet<>();
 }

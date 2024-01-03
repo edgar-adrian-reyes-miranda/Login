@@ -2,7 +2,6 @@ package com.logueo.spring.Entity;
 
 import lombok.*;
 import jakarta.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -11,9 +10,12 @@ import java.util.List;
 @Table(name="escolares")
 public class DatosEscolares {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_escolar;
     private String matricula;
     private String correo_inst;
     private String carrera;
+    @ManyToOne
+    @JoinColumn(name="person_id")
+    private DatosPersonales datosPersonales;
 }

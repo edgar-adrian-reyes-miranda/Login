@@ -2,6 +2,9 @@ package com.logueo.spring.DTO;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import com.logueo.spring.Entity.DatosPersonales;
+
 import lombok.*;
 @Data
 public class DatosFTDDto implements Serializable {
@@ -12,5 +15,5 @@ public class DatosFTDDto implements Serializable {
     private Date fecha_termino;
     private String correo_becario;
     private int matricula_ftd;
-
+    private DatosPersonales datosPersonales;
 }

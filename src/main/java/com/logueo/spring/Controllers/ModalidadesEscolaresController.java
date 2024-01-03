@@ -3,7 +3,6 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.ModalidadesEscolaresDto;
 import com.logueo.spring.Entity.ModalidadesEscolares;
-import com.logueo.spring.Entity.Perfilamiento;
 import com.logueo.spring.Services.ModalidadesEscolaresServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ public class ModalidadesEscolaresController {
     @Autowired
     private ModalidadesEscolaresServices modalidadesEscolaresServices;
     //mapeo para obtenes la lista de alumnos
-    @GetMapping(path = "/lista")
+    @GetMapping(path = {"/lista"})
     @ResponseStatus(HttpStatus.OK)
     public List<ModalidadesEscolares> obtenertodos(){
         return modalidadesEscolaresServices.findAllmodalidaEscolar();

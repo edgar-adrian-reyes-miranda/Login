@@ -2,6 +2,7 @@ package com.logueo.spring.DTO;
 
 import java.io.Serializable;
 
+import com.logueo.spring.Entity.DatosPersonales;
 import com.logueo.spring.Entity.Tramite;
 import jakarta.persistence.ManyToOne;
 import lombok.*;
@@ -12,4 +13,5 @@ public class DatosIngresosDto implements Serializable {
     private String historial_Academico;
     @ManyToOne
     private Tramite tramite;
+    private DatosPersonales datosPersonales;
 }

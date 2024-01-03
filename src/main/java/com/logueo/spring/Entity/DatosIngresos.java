@@ -15,6 +15,8 @@ public class DatosIngresos {
     private Long id_ingreso;
     private String cv;
     private String historial_Academico;
-
+    @ManyToOne
+    @JoinColumn(name="person_id")
+    private DatosPersonales datosPersonales;
 
 }
