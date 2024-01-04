@@ -1,6 +1,5 @@
 package com.logueo.spring.Services;
 
-import com.logueo.spring.DTO.HorariosDto;
 import com.logueo.spring.Entity.Horarios;
 import com.logueo.spring.Repository.HorariosRepository;
 import java.util.List;

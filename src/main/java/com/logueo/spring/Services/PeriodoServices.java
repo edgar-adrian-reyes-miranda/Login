@@ -1,6 +1,5 @@
 package com.logueo.spring.Services;
 
-import com.logueo.spring.DTO.PeriodoDto;
 import com.logueo.spring.Entity.Periodo;
 import com.logueo.spring.Repository.PeriodoRepository;
 import java.util.List;

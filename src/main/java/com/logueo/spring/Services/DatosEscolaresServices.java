@@ -32,6 +32,11 @@ public class DatosEscolaresServices {
         DatosEscolaress.setCorreo_inst(DatosEscolaresDto.getCorreo_inst());
         DatosEscolaress.setMatricula(DatosEscolaresDto.getMatricula());
         DatosEscolaress.setCarrera(DatosEscolaresDto.getCarrera());
+        DatosEscolaress.setPeriodo(DatosEscolaresDto.getPeriodo());
+        DatosEscolaress.setUniversidades(DatosEscolaresDto.getUniversidades());
+        DatosEscolaress.setPlanEducativo(DatosEscolaresDto.getPlanEducativo());
+        DatosEscolaress.setModalidadesEscolares(DatosEscolaresDto.getModalidadesEscolares());
+        DatosEscolaress.setDatosPersonales(DatosEscolaresDto.getDatosPersonales());
         return datosEscolaresRepository.save(DatosEscolaress);
     }
 
@@ -49,6 +54,11 @@ public class DatosEscolaresServices {
           DatosEscolares.setCorreo_inst(DatosEscolaresDto.getCorreo_inst());
           DatosEscolares.setMatricula(DatosEscolaresDto.getMatricula());
           DatosEscolares.setCarrera(DatosEscolaresDto.getCarrera());
+          DatosEscolares.setPeriodo(DatosEscolaresDto.getPeriodo());
+          DatosEscolares.setUniversidades(DatosEscolaresDto.getUniversidades());
+          DatosEscolares.setPlanEducativo(DatosEscolaresDto.getPlanEducativo());
+          DatosEscolares.setModalidadesEscolares(DatosEscolaresDto.getModalidadesEscolares());
+          DatosEscolares.setDatosPersonales(DatosEscolaresDto.getDatosPersonales());
             return datosEscolaresRepository.save(DatosEscolares);
         }else {
             return null;

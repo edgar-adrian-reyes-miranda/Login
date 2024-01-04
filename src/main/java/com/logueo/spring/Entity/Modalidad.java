@@ -1,9 +1,11 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
 
 import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -15,5 +17,8 @@ public class Modalidad {
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long id_modalida;
     private String tipo_modalidad;
+    @OneToMany(mappedBy = "modalidad", fetch = FetchType.EAGER)
+     @JsonIgnore
+    private List<DatosFTD> datosFTDS;
 
 }

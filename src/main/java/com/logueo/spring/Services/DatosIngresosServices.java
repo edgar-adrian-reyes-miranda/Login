@@ -30,7 +30,10 @@ public class DatosIngresosServices {
         DatosIngresos DatosIngresoss= new DatosIngresos ();
         DatosIngresoss.setCv(DatosIngresosDto.getCv());
         DatosIngresoss.setHistorial_Academico(DatosIngresosDto.getHistorial_Academico());
-        
+        DatosIngresoss.setDatosPersonales(DatosIngresosDto.getDatosPersonales());
+        DatosIngresoss.setTramite(DatosIngresosDto.getTramite());
+        DatosIngresoss.setPerfilamiento(DatosIngresosDto.getPerfilamiento());
+        DatosIngresoss.setHorarios(DatosIngresosDto.getHorarios());
         return datosIngresosRepository.save(DatosIngresoss);
     }
 
@@ -47,6 +50,10 @@ public class DatosIngresosServices {
         if(DatosIngresos != null) {
           DatosIngresos.setCv(DatosIngresosDto.getCv());
           DatosIngresos.setHistorial_Academico(DatosIngresosDto.getHistorial_Academico());
+          DatosIngresos.setTramite(DatosIngresosDto.getTramite());
+          DatosIngresos.setDatosPersonales(DatosIngresosDto.getDatosPersonales());
+          DatosIngresos.setPerfilamiento(DatosIngresosDto.getPerfilamiento());
+          DatosIngresos.setHorarios(DatosIngresosDto.getHorarios());
             return datosIngresosRepository.save(DatosIngresos);
         }else {
             return null;

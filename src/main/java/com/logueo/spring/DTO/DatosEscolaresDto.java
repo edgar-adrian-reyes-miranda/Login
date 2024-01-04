@@ -1,8 +1,9 @@
 package com.logueo.spring.DTO;
 
 import java.io.Serializable;
+import java.util.List;
 
-import com.logueo.spring.Entity.DatosPersonales;
+import com.logueo.spring.Entity.*;
 import lombok.*;
 @Data
 public class DatosEscolaresDto implements Serializable {
@@ -10,5 +11,9 @@ public class DatosEscolaresDto implements Serializable {
     private String matricula;
     private String correo_inst;
     private String carrera;
-    private DatosPersonales datosPersonales;
+    private List<DatosPersonales> datosPersonales;
+    private Periodo periodo;
+    private Universidades universidades;
+    private PlanEducativo planEducativo;
+    private ModalidadesEscolares modalidadesEscolares;
 }

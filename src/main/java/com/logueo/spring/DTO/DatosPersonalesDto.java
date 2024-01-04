@@ -1,12 +1,10 @@
 package com.logueo.spring.DTO;
 
 import java.io.Serializable;
-import java.util.*;
-
 import com.logueo.spring.Entity.DatosEscolares;
 import com.logueo.spring.Entity.DatosFTD;
 import com.logueo.spring.Entity.DatosIngresos;
-
+import com.logueo.spring.Entity.Genero;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
@@ -30,8 +28,8 @@ public class DatosPersonalesDto implements Serializable {
     @Digits(integer=10, fraction = 0, message = "El maximo de numero son 10 digitos")
     private Long telefono_casa;
     private String correo;
-    private String genero;
-    private Set<DatosIngresos> ingresos= new HashSet<>();
-    private Set<DatosFTD> ftd= new HashSet<>();
-    private Set<DatosEscolares> escolares= new HashSet<>();
+    private Genero genero;
+    private DatosIngresos ingresos;
+    private DatosFTD ftd;
+    private DatosEscolares escolares;
 }

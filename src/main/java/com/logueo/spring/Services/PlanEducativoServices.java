@@ -1,6 +1,5 @@
 package com.logueo.spring.Services;
 
-import com.logueo.spring.DTO.PlanEducativoDto;
 import com.logueo.spring.Entity.PlanEducativo;
 import com.logueo.spring.Repository.PlanEstudiosRepository;
 import java.util.List;

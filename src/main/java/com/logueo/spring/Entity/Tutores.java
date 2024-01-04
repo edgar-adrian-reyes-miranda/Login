@@ -1,7 +1,11 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
+
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,4 +16,8 @@ public class Tutores {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_tutor;
     private String nombre;
+
+    @OneToMany(mappedBy = "tutores", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<DatosFTD> datosFTDS;
 }

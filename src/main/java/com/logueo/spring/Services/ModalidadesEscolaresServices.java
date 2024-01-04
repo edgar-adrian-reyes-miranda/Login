@@ -29,7 +29,7 @@ public class ModalidadesEscolaresServices {
     @Transactional
     public ModalidadesEscolares crearModalidadesEscolares(ModalidadesEscolaresDto ModalidadesEscolaresDto) {
         ModalidadesEscolares ModalidadesEscolaress= new ModalidadesEscolares ();
-        ModalidadesEscolaress.setTipo_modadlidad(ModalidadesEscolaresDto.getTipo_modalidad());
+        ModalidadesEscolaress.setTipo_modalidad(ModalidadesEscolaresDto.getTipo_modalidad());
         return modalidadesEscolaresRepository.save(ModalidadesEscolaress);
     }
 
@@ -44,7 +44,7 @@ public class ModalidadesEscolaresServices {
     public ModalidadesEscolares editarModalidadesEscolares(Long id, ModalidadesEscolaresDto ModalidadesEscolaresDto) {
         ModalidadesEscolares ModalidadesEscolares = modalidadesEscolaresRepository.findById(id).orElse(null);
         if(ModalidadesEscolares != null) {
-          ModalidadesEscolares.setTipo_modadlidad(ModalidadesEscolaresDto.getTipo_modalidad());
+          ModalidadesEscolares.setTipo_modalidad(ModalidadesEscolaresDto.getTipo_modalidad());
             return modalidadesEscolaresRepository.save(ModalidadesEscolares);
         }else {
             return null;

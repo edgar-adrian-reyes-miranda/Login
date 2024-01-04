@@ -43,6 +43,9 @@ public class DatospersonalesServices {
         DatosPersonaless.setGenero(DatosPersonalesDto.getGenero());
         DatosPersonaless.setEstados(DatosPersonalesDto.getEstados());
         DatosPersonaless.setMunicipio(DatosPersonalesDto.getMunicipio());
+        DatosPersonaless.setDatosEscolares(DatosPersonalesDto.getEscolares());
+        DatosPersonaless.setDatosIngresos(DatosPersonalesDto.getIngresos());
+        DatosPersonaless.setDatosFTDS(DatosPersonalesDto.getFtd());
         return datosPersonalesRepository.save(DatosPersonaless);
     }
 
@@ -69,6 +72,9 @@ public class DatospersonalesServices {
           DatosPersonales.setGenero(DatosPersonalesDto.getGenero());
           DatosPersonales.setMunicipio(DatosPersonalesDto.getMunicipio());
           DatosPersonales.setEstados(DatosPersonalesDto.getEstados());
+          DatosPersonales.setDatosFTDS(DatosPersonalesDto.getFtd());
+          DatosPersonales.setDatosIngresos(DatosPersonalesDto.getIngresos());
+          DatosPersonales.setDatosEscolares(DatosPersonalesDto.getEscolares());
             return datosPersonalesRepository.save(DatosPersonales);
         }else {
             return null;

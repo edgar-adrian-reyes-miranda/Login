@@ -1,6 +1,5 @@
 package com.logueo.spring.Services;
 
-import com.logueo.spring.DTO.ModalidadDto;
 import com.logueo.spring.Entity.Modalidad;
 import com.logueo.spring.Repository.ModalidadRepository;
 import java.util.List;

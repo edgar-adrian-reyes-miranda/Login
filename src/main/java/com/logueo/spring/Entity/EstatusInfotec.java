@@ -15,7 +15,7 @@ public class EstatusInfotec {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_estatus;
     private String tipo_estaus;
-    @OneToMany( cascade = CascadeType.ALL)
-    private List<DatosFTD> datosFTDList;
+    @OneToMany(mappedBy = "estatusInfotec",cascade = CascadeType.ALL)
+    private List<DatosFTD> datosFTD;
 
 }

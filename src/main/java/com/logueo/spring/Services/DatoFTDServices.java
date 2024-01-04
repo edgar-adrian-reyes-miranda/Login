@@ -33,7 +33,14 @@ public class DatoFTDServices {
         DatosFTDs.setFecha_ingreso(DatosFTDDto.getFecha_ingreso());
         DatosFTDs.setFecha_termino(DatosFTDDto.getFecha_termino());
         DatosFTDs.setMatricula_ftd(DatosFTDDto.getMatricula_ftd());
-
+        DatosFTDs.setDatosPersonales(DatosFTDDto.getDatosPersonales());
+        DatosFTDs.setCursos(DatosFTDDto.getCursos());
+        DatosFTDs.setEstatusInfotec(DatosFTDDto.getEstatusInfotec());
+        DatosFTDs.setModalidad(DatosFTDDto.getModalidad());
+        DatosFTDs.setEnlace(DatosFTDDto.getEnlace());
+        DatosFTDs.setGrupos(DatosFTDDto.getGrupos());
+        DatosFTDs.setTutores(DatosFTDDto.getTutores());
+        DatosFTDs.setDatosPersonales(DatosFTDDto.getDatosPersonales());
         return datosFTDRepository.save(DatosFTDs);
     }
 
@@ -53,6 +60,14 @@ public class DatoFTDServices {
           DatosFTD.setFecha_ingreso(DatosFTDDto.getFecha_ingreso());
           DatosFTD.setFecha_termino(DatosFTDDto.getFecha_termino());
           DatosFTD.setMatricula_ftd(DatosFTDDto.getMatricula_ftd());
+          DatosFTD.setEstatusInfotec(DatosFTDDto.getEstatusInfotec());
+          DatosFTD.setDatosPersonales(DatosFTDDto.getDatosPersonales());
+          DatosFTD.setCursos(DatosFTDDto.getCursos());
+          DatosFTD.setModalidad(DatosFTDDto.getModalidad());
+          DatosFTD.setEnlace(DatosFTDDto.getEnlace());
+          DatosFTD.setGrupos(DatosFTDDto.getGrupos());
+          DatosFTD.setTutores(DatosFTDDto.getTutores());
+          DatosFTD.setDatosPersonales(DatosFTDDto.getDatosPersonales());
             return datosFTDRepository.save(DatosFTD);
         }else {
             return null;

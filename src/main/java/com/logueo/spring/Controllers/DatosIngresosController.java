@@ -16,14 +16,14 @@ public class DatosIngresosController {
     private DatosIngresosServices datosIngresosServices;
 
     //mapeo para obtenes la lista de alumnos
-    @GetMapping(path = "/lista")
+    @GetMapping(path = {"/lista"})
     @ResponseStatus(HttpStatus.OK)
     public List<DatosIngresos> obtenertodos(){
         return datosIngresosServices.findAllingreso();
     }
 
     //mapeo para obtener alumnos por ID
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = {"/{id}"})
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
         DatosIngresos ingreso= null;
@@ -43,7 +43,7 @@ public class DatosIngresosController {
     }
 
     //mapeo para crear alumno
-    @PostMapping(path = "/guardar")
+    @PostMapping(path = {"/guardar"})
     public ResponseEntity<?> crearbeca(@RequestBody DatosIngresosDto becaDto) {
         DatosIngresos  ingresoNuevo = null;
         Map<String, Object> response = new HashMap<>();
@@ -84,7 +84,7 @@ public class DatosIngresosController {
     }
 
     //mapeo para editar un alumno
-    @PutMapping(path = "/editar/{id}")
+    @PutMapping(path = {"/editar/{id}"})
     public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody DatosIngresosDto becaDto) {
         DatosIngresos ingresoEditar = null;
         Map<String, Object> response = new HashMap<>();

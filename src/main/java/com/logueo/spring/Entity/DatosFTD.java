@@ -1,8 +1,10 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -22,15 +24,40 @@ public class DatosFTD {
     private String beca;
     private String becadocumenot;
     
-    @ManyToOne
-    @JoinColumn(name="curso_id")
-    private Cursos cursos;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinTable(name="ftd_cursos",
+    joinColumns = @JoinColumn(name = "ftd_id"),
+    inverseJoinColumns = @JoinColumn(name="curso_id"))
+    private List<Cursos> cursos;
 
-    @ManyToOne
-    @JoinColumn(name="estatus_id", nullable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinColumn(name="estatus_id")
     private EstatusInfotec estatusInfotec;
-    @ManyToOne
-    @JoinColumn(name="person_id")
-    private DatosPersonales datosPersonales;
 
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinColumn(name = "modalida_id")
+    private Modalidad modalidad;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinColumn(name = "enlace_id")
+    private Enlace enlace;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinColumn(name = "grupo_id")
+    private Grupos grupos;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinColumn(name = "tutor_id")
+    private Tutores tutores;
+
+    @OneToMany(mappedBy = "datosFTDS",fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<DatosPersonales> datosPersonales;
 }

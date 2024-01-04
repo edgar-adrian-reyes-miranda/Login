@@ -1,6 +1,5 @@
 package com.logueo.spring.Services;
 
-import com.logueo.spring.DTO.TurnoDto;
 import com.logueo.spring.Entity.Turno;
 import com.logueo.spring.Repository.TurnoRepository;
 import java.util.List;
