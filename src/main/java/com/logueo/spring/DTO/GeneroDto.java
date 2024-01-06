@@ -10,6 +10,6 @@ import lombok.*;
 public class GeneroDto implements Serializable {
 
     private static final long serialVersionUID=1L;
-    private String genero;
+    private String tipo_genero;
     private List<DatosPersonales> datosPersonales;
 }

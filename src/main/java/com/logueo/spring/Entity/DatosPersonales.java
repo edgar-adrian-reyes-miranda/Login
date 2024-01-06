@@ -1,6 +1,6 @@
 package com.logueo.spring.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.*;
 import lombok.*;
 import jakarta.persistence.*;
@@ -30,25 +30,25 @@ public class DatosPersonales {
     @Digits(integer=10,fraction= 0, message = "El maximo de numero son 10 digitos")
     private Long telefono_casa;
     private String correo;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("datosPersonales")
+    @JoinColumn(name = "genero_id")
+    private Genero genero;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosPersonales")
     @JoinColumn(name = "ftd_id")
     private DatosFTD datosFTDS;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosPersonales")
     @JoinColumn(name = "ingreso_id")
     private DatosIngresos datosIngresos;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosPersonales")
     @JoinColumn(name ="escolar_id")
     private DatosEscolares datosEscolares;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
-    @JoinColumn(name = "genero_id")
-    private Genero genero;
-
+   
 }

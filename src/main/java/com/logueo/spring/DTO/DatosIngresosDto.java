@@ -7,7 +7,6 @@ import com.logueo.spring.Entity.DatosPersonales;
 import com.logueo.spring.Entity.Horarios;
 import com.logueo.spring.Entity.Perfilamiento;
 import com.logueo.spring.Entity.Tramite;
-import jakarta.persistence.ManyToOne;
 import lombok.*;
 @Data
 public class DatosIngresosDto implements Serializable {

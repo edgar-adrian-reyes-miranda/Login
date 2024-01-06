@@ -2,7 +2,6 @@ package com.logueo.spring.DTO;
 
 
 import com.logueo.spring.Entity.DatosFTD;
-import jakarta.persistence.OneToMany;
 import lombok.*;
 import java.io.Serializable;
 import java.util.List;

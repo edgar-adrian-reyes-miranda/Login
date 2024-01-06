@@ -15,7 +15,7 @@ public class Genero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_genero;
-    private String genero;
+    private String tipo_genero;
     @OneToMany(mappedBy = "genero", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<DatosPersonales> datosPersonales;

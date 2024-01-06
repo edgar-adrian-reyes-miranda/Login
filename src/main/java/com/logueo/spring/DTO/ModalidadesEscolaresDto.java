@@ -2,8 +2,6 @@ package com.logueo.spring.DTO;
 
 import java.io.Serializable;
 import java.util.List;
-
-import com.logueo.spring.Entity.DatosEscolares;
 import com.logueo.spring.Entity.DatosFTD;
 import lombok.*;
 @Data
