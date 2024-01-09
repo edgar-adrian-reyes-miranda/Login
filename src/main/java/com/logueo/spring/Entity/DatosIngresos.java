@@ -1,6 +1,7 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -21,20 +22,20 @@ public class DatosIngresos {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tramite_id")
-    @JsonIgnore
+    @JsonIgnoreProperties("datosIngresos")
     private Tramite tramite;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosIngresos")
     @JoinColumn(name = "perfilamiento_id")
     private Perfilamiento perfilamiento;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosIngresos")
     @JoinColumn(name = "horario_id")
     private Horarios horarios;
 
     @OneToMany(mappedBy = "datosIngresos", fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosIngresos")
     private List<DatosPersonales> datosPersonales;
 }

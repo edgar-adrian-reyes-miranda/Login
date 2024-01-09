@@ -1,6 +1,7 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -17,7 +18,7 @@ public class Universidades{
         private Long id_uni;
         private String nombre;
         @OneToMany(mappedBy = "universidades",fetch = FetchType.EAGER)
-        @JsonIgnore
+        @JsonIgnoreProperties("universidades")
         private List<DatosEscolares>datosEscolares;
 
 }

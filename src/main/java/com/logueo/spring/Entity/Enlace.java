@@ -1,6 +1,7 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -18,7 +19,7 @@ public class Enlace {
     private String tipo_enlace;
 
     @OneToMany(mappedBy = "enlace", fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("enlace")
     private List<DatosFTD> datosFTDS;
 
 }

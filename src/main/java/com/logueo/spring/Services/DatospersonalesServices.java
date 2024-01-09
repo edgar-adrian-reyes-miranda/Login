@@ -46,7 +46,7 @@ public class DatospersonalesServices {
     }
 
     //Crear alumno
-    @Transactional
+    @Transactional(readOnly = true)
     public DatosPersonales crearDatosPersonales(DatosPersonalesDto DatosPersonalesDto) {
         DatosPersonales DatosPersonaless= new DatosPersonales ();
         DatosPersonaless.setCorreo(DatosPersonalesDto.getCorreo());
@@ -79,7 +79,7 @@ public class DatospersonalesServices {
     }
 
     //Editar
-    @Transactional
+    @Transactional(readOnly = true)
     public DatosPersonales editarDatosPersonales(Long id, DatosPersonalesDto DatosPersonalesDto) {
         DatosPersonales DatosPersonales = datosPersonalesRepository.findById(id).orElse(null);
         if(DatosPersonales != null) {

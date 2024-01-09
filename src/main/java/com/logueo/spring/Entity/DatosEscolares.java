@@ -1,6 +1,7 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -21,26 +22,26 @@ public class DatosEscolares {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosEscolares")
     @JoinColumn(name="periodo_id")
     private Periodo periodo;
 
     @ManyToOne(fetch =FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosEscolares")
     @JoinColumn(name="uni_id")
     private Universidades universidades;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosEscolares")
     @JoinColumn(name="plan_id")
     private PlanEducativo planEducativo;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosEscolares")
     @JoinColumn(name = "modalidad_id")
     private ModalidadesEscolares modalidadesEscolares;
 
     @OneToMany(mappedBy = "datosEscolares",fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("datosEscolares")
     private List<DatosPersonales> datosPersonales;
 }

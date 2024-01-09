@@ -1,6 +1,7 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -19,6 +20,6 @@ public class Periodo {
     private Long id_periodo;
     private String tipo_periodo;
     @OneToMany(mappedBy = "periodo", fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("periodo")
     private List<DatosEscolares> escolares;
 }

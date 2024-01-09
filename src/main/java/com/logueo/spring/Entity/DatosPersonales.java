@@ -50,5 +50,10 @@ public class DatosPersonales {
     @JsonIgnoreProperties("datosPersonales")
     @JoinColumn(name ="escolar_id")
     private DatosEscolares datosEscolares;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("datosPersonales")
+    @JoinColumn(name="id")
+    private Usuario usuario;
    
 }

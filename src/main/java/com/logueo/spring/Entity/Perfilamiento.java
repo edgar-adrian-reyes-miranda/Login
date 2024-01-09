@@ -1,6 +1,7 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -19,8 +20,7 @@ public class Perfilamiento {
     private String nombre;
 
     @OneToMany(mappedBy = "perfilamiento",fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties("perfilamiento")
     private List<DatosIngresos>datosIngresos;
-   /* @Column(name="activo")
-    private boolean activo=true;*/
+
 }

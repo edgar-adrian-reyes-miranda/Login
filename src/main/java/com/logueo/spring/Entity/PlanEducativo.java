@@ -1,5 +1,6 @@
 package com.logueo.spring.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
@@ -21,7 +22,7 @@ public class PlanEducativo {
     private Long id_plan;
     private String nombre;
     @OneToMany(mappedBy = "planEducativo", fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonIgnoreProperties("planesEducativo")
     private List<DatosEscolares>datosEscolares;
 
     @Column(name="deleted")

@@ -1,5 +1,6 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -16,6 +17,7 @@ public class EstatusInfotec {
     private Long id_estatus;
     private String tipo_estaus;
     @OneToMany(mappedBy = "estatusInfotec",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("estatus")
     private List<DatosFTD> datosFTD;
 
 }

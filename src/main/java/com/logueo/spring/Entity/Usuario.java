@@ -1,12 +1,13 @@
 package com.logueo.spring.Entity;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.*;
+import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="usuario")
 public class Usuario {
@@ -16,10 +17,8 @@ public class Usuario {
 	private String username;
 	private String password;
 	private String correo;
-	@OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "usuario")
-	@JsonIgnore
-	private Set<UsurioRol> usuarioRoles = new HashSet<>() ;
-	@ManyToOne
-	@JoinColumn(name="datopersonale_id")
-	private DatosPersonales datospersonales;
+
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("usuario")
+	private List<DatosPersonales> datosPersonales;
 }

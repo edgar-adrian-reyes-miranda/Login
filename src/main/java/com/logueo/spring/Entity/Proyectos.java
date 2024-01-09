@@ -1,7 +1,10 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 
 @Data
@@ -17,4 +20,7 @@ public class Proyectos {
     private String avance;
     private String evaluacion;
 
+    @ManyToMany(mappedBy = "proyectos", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("proyectos")
+    private List<DatosFTD> datosFTDS;
 }
