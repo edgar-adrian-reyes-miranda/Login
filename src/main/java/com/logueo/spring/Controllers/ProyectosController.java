@@ -4,9 +4,13 @@ import com.logueo.spring.DTO.ProyectosDto;
 import com.logueo.spring.Entity.Proyectos;
 import com.logueo.spring.Services.ProyectosServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.*;
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/proyectos")
@@ -103,5 +107,25 @@ public class ProyectosController {
         response.put("mensaje", "Alumno actualizado con éxito, con el ID: " + id);
         response.put("Proyectos", Editar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
+    //eliminacion en cascada
+    @PutMapping(path = {"/softdelete/{id}"})
+    public void disableProyecto(@PathVariable String id){
+        proyectosServices.softDeleteProyectos(id);  ///puedo meter mas servicios para que sean eliminacion en cascada
+    }
+    /// restaurar
+    @PutMapping(path = {"/restore/{id}"})
+    public ResponseEntity<?> restoreProyectos(@PathVariable String id){
+        Map<String, Object>response = new HashMap<>();
+        try {
+            proyectosServices.restoreProyectos(id);
+
+        }catch (Exception e){
+            response.put("mensaje", "Error al restaurar el proyecto. Detalles:"+ e.getMessage());
+            return  new ResponseEntity<Map<String ,Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        response.put("mensaje", "Proyecto restaurado con exito, con el ID:"+ id);
+        return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 }

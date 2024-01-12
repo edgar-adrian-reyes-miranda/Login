@@ -1,13 +1,13 @@
 package com.logueo.spring.DTO;
 
-import java.io.Serializable;
-import java.util.List;
-
 import com.logueo.spring.Entity.DatosPersonales;
 import com.logueo.spring.Entity.Horarios;
 import com.logueo.spring.Entity.Perfilamiento;
 import com.logueo.spring.Entity.Tramite;
-import lombok.*;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
 @Data
 public class DatosIngresosDto implements Serializable {
     private static final long serialVersionUID=1L;

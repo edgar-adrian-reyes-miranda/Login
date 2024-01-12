@@ -1,6 +1,5 @@
 package com.logueo.spring.DTO;
 
-import java.io.Serializable;
 import com.logueo.spring.Entity.DatosEscolares;
 import com.logueo.spring.Entity.DatosFTD;
 import com.logueo.spring.Entity.DatosIngresos;
@@ -8,7 +7,9 @@ import com.logueo.spring.Entity.Genero;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.Data;
+
+import java.io.Serializable;
 @Data
 public class DatosPersonalesDto implements Serializable {
 

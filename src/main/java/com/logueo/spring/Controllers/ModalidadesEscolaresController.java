@@ -5,8 +5,9 @@ import com.logueo.spring.DTO.ModalidadesEscolaresDto;
 import com.logueo.spring.Entity.ModalidadesEscolares;
 import com.logueo.spring.Services.ModalidadesEscolaresServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.*;
 
 import java.util.HashMap;
 import java.util.List;

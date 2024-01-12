@@ -1,7 +1,8 @@
 package com.logueo.spring.DTO;
 
+import lombok.Data;
+
 import java.io.Serializable;
-import lombok.*;
 @Data
 public class AdministradorDto implements Serializable {
 

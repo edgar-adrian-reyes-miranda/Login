@@ -1,8 +1,11 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 
@@ -12,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="proyecto")
+@Where(clause = "status= true")
 public class Proyectos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +26,10 @@ public class Proyectos {
 
     @ManyToMany(mappedBy = "proyectos", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("proyectos")
+    //@Where(clause = "status <> 0")
     private List<DatosFTD> datosFTDS;
+
+    @Column(name="status", columnDefinition = "boolean DEFAULT  'true'")
+    private Boolean status=true;
+
 }

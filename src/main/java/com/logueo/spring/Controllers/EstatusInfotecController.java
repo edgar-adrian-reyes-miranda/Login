@@ -4,12 +4,16 @@ import com.logueo.spring.DTO.EstatusInfotecDto;
 import com.logueo.spring.Entity.EstatusInfotec;
 import com.logueo.spring.Services.EstatusInfotecServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.*;
-import java.util.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api/estatusinfo")
+@RequestMapping("/api/estatus")
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class EstatusInfotecController {
     @Autowired

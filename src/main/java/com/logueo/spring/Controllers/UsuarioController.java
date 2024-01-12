@@ -3,11 +3,11 @@ package com.logueo.spring.Controllers;
 import com.logueo.spring.DTO.AdministradorDto;
 import com.logueo.spring.DTO.UsuarioDto;
 import com.logueo.spring.Entity.Administrador;
+import com.logueo.spring.Entity.Usuario;
 import com.logueo.spring.Repository.AdminsitradorRepository;
+import com.logueo.spring.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.logueo.spring.Entity.Usuario;
-import com.logueo.spring.Repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/api/usuarios")

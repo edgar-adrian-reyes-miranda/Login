@@ -6,11 +6,11 @@ import com.logueo.spring.Entity.DatosPersonales;
 import com.logueo.spring.Entity.Genero;
 import com.logueo.spring.Repository.DatosPersonalesRepository;
 import com.logueo.spring.Repository.GeneroRepository;
-
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class DatospersonalesServices {

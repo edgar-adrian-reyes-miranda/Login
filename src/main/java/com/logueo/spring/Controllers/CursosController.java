@@ -3,10 +3,14 @@ package com.logueo.spring.Controllers;
 import com.logueo.spring.DTO.CursosDto;
 import com.logueo.spring.Entity.Cursos;
 import com.logueo.spring.Services.CursosServices;
-import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/cursos")

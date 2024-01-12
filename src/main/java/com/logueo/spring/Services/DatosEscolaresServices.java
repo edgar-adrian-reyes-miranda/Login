@@ -3,10 +3,11 @@ package com.logueo.spring.Services;
 import com.logueo.spring.DTO.DatosEscolaresDto;
 import com.logueo.spring.Entity.DatosEscolares;
 import com.logueo.spring.Repository.DatosEscolaresRepository;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class DatosEscolaresServices {

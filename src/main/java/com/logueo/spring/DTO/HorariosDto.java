@@ -1,7 +1,7 @@
 package com.logueo.spring.DTO;
 
 import com.logueo.spring.Entity.DatosIngresos;
-import lombok.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;

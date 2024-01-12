@@ -1,10 +1,10 @@
 package com.logueo.spring.DTO;
 
+import com.logueo.spring.Entity.DatosPersonales;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.List;
-
-import com.logueo.spring.Entity.DatosPersonales;
-import lombok.*;
 @Data
 
 public class GeneroDto implements Serializable {
