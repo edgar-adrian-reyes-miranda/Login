@@ -1,12 +1,11 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 
 @Data
@@ -36,7 +35,18 @@ public class DatosIngresos {
     @JoinColumn(name = "horario_id")
     private Horarios horarios;
 
-    @OneToMany(mappedBy = "datosIngresos", fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties("datosIngresos")
-    private List<DatosPersonales> datosPersonales;
+    @JoinColumn(name="modalida_id")
+    private Modalidad modalidad;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties("datosIngresos")
+    @JoinColumn(name="turno_id")
+    private Turno turno;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @JoinColumn(name = "person_id")
+    private DatosPersonales datosPersonales;
 }

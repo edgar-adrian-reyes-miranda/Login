@@ -12,14 +12,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="estatus")
 public class EstatusInfotec {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_estatus;
     private String tipo_estaus;
-    @OneToMany(mappedBy = "estatusInfotec",cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("estatus")
-    private List<DatosFTD> datosFTD;
+    @OneToMany(mappedBy = "estatusInfotec",fetch =  FetchType.LAZY)
+    //@JsonIgnoreProperties
+    private List<DatosFTD> datosFTDs;
 
 }

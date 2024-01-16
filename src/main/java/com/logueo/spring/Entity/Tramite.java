@@ -1,5 +1,6 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ public class Tramite {
     private Long id_tramite;
     private String tipo_tramite;
     @OneToMany(mappedBy = "tramite",fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("tramite")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     private List<DatosIngresos> datosIngresos;
 
 }

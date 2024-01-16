@@ -19,8 +19,8 @@ public class PlanEducativo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_plan;
     private String nombre;
-    @OneToMany(mappedBy = "planEducativo", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("planesEducativo")
+    @OneToMany(mappedBy = "planEducativo", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     private List<DatosEscolares>datosEscolares;
 
 }

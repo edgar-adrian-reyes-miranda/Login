@@ -10,6 +10,5 @@ public class PerfilamientoDto implements Serializable {
     private static final long serialVersionUID=1L;
     private String nombre;
     private List<DatosIngresos> datosIngresos;
-    /*@Column(name="activo")
-    private boolean activo=true;*/
+
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="enlace")
 public class Enlace {
     @Id
@@ -19,8 +20,8 @@ public class Enlace {
     private Long id_enlace;
     private String tipo_enlace;
 
-    @OneToMany(mappedBy = "enlace", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("enlace")
+    @OneToMany(mappedBy = "enlace", fetch = FetchType.LAZY)
+    //@JsonIgnoreProperties
     private List<DatosFTD> datosFTDS;
 
 }

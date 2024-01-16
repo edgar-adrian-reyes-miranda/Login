@@ -1,5 +1,6 @@
 package com.logueo.spring.DTO;
 
+import com.logueo.spring.Entity.DatosEscolares;
 import com.logueo.spring.Entity.DatosFTD;
 import lombok.Data;
 
@@ -10,5 +11,5 @@ public class ModalidadesEscolaresDto implements Serializable {
     	
 	private static final long serialVersionUID=1L;
     private String tipo_modalidad;
-   private List<DatosFTD> datosFTDS;
+   private List<DatosEscolares> datosEscolares;
 }

@@ -31,6 +31,7 @@ public class ModalidadesEscolaresServices {
     public ModalidadesEscolares crearModalidadesEscolares(ModalidadesEscolaresDto ModalidadesEscolaresDto) {
         ModalidadesEscolares ModalidadesEscolaress= new ModalidadesEscolares ();
         ModalidadesEscolaress.setTipo_modalidad(ModalidadesEscolaresDto.getTipo_modalidad());
+
         return modalidadesEscolaresRepository.save(ModalidadesEscolaress);
     }
 

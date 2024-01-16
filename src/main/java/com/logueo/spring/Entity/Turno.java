@@ -19,6 +19,6 @@ public class Turno {
     private Long id_turno;
     private String tipo_turno;
     @OneToMany(mappedBy = "turno", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("turno")
-    private List<DatosFTD> datosFTDS;
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    private List<DatosIngresos> datosIngresos;
 }

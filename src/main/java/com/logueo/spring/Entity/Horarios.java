@@ -19,6 +19,6 @@ public class Horarios {
     private Long id_horario;
     private String horario;
     @OneToMany(mappedBy = "horarios", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("horario")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     private List<DatosIngresos> datosIngresos;
 }

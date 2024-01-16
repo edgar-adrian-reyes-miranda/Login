@@ -20,6 +20,6 @@ public class ModalidadesEscolares {
     private Long id_modalidad;
     private String tipo_modalidad;
     @OneToMany(mappedBy = "modalidadesEscolares",fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("modalidades")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     private List<DatosEscolares> datosEscolares;
 }

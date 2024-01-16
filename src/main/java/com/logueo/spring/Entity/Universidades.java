@@ -19,7 +19,7 @@ public class Universidades{
         private Long id_uni;
         private String nombre;
         @OneToMany(mappedBy = "universidades",fetch = FetchType.EAGER)
-        @JsonIgnoreProperties("universidades")
+        @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
         private List<DatosEscolares>datosEscolares;
 
 }

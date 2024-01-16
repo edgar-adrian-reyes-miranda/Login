@@ -35,6 +35,8 @@ public class DatosIngresosServices {
         DatosIngresoss.setTramite(DatosIngresosDto.getTramite());
         DatosIngresoss.setPerfilamiento(DatosIngresosDto.getPerfilamiento());
         DatosIngresoss.setHorarios(DatosIngresosDto.getHorarios());
+        DatosIngresoss.setTurno(DatosIngresosDto.getTurno());
+        DatosIngresoss.setModalidad(DatosIngresosDto.getModalidad());
         return datosIngresosRepository.save(DatosIngresoss);
     }
 
@@ -55,6 +57,8 @@ public class DatosIngresosServices {
           DatosIngresos.setDatosPersonales(DatosIngresosDto.getDatosPersonales());
           DatosIngresos.setPerfilamiento(DatosIngresosDto.getPerfilamiento());
           DatosIngresos.setHorarios(DatosIngresosDto.getHorarios());
+          DatosIngresos.setTurno(DatosIngresosDto.getTurno());
+          DatosIngresos.setModalidad(DatosIngresosDto.getModalidad());
             return datosIngresosRepository.save(DatosIngresos);
         }else {
             return null;

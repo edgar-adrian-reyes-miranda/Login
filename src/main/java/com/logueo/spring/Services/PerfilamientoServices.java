@@ -50,11 +50,4 @@ public class PerfilamientoServices {
             return null;
         }
     }
-/*
-    public void cambiarestadoperfil(Long id, boolean activo){
-        Perfilamiento perfilamiento= perfilamientoRepositiry.findById(id).orElseThrow(()-> new EntityNotFoundException("Perfil no encontrado"));
-        perfilamiento.setActivo(activo);
-        perfilamientoRepositiry.save(perfilamiento);
-    }
-*/
 }

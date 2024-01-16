@@ -1,13 +1,14 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 
 @Data
@@ -17,17 +18,17 @@ import lombok.NoArgsConstructor;
 @Table(name="personales")
 public class DatosPersonales {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_person")
     private Long id_person;
     private String nombre;
     private String p_apellido;
     private String s_apellido;
-    @Size(max=18, message = "EL numero de caracteres de CURP son 18")
+    @Size(max = 18, message = "EL numero de caracteres de CURP son 18")
     private String curp;
     private String direccion;
     private String estados;
     private String municipio;
-    @Min(value = 10, message = "Ingrese su edad")
     private Integer edad;
     @Digits(integer=10, fraction=0, message ="El maximo de numero de digitos son 10" )
     private Long telefono;
@@ -39,24 +40,22 @@ public class DatosPersonales {
     @JsonIgnoreProperties("datosPersonales")
     @JoinColumn(name = "genero_id")
     private Genero genero;
+    
+    @OneToMany(mappedBy = "datosPersonales", fetch = FetchType.EAGER)
+    //@JsonIgnore
+    private List<DatosFTD> datosFTDs;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("datosPersonales")
-    @JoinColumn(name = "ftd_id")
-    private DatosFTD datosFTDS;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("datosPersonales")
-    @JoinColumn(name = "ingreso_id")
-    private DatosIngresos datosIngresos;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("datosPersonales")
-    @JoinColumn(name ="escolar_id")
-    private DatosEscolares datosEscolares;
+    @OneToMany(mappedBy = "datosPersonales", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<DatosIngresos> datosIngresos;
+      
+    @OneToMany(mappedBy = "datosPersonales", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<DatosEscolares> datosEscolares;   
+    
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("datosPersonales")
+    @JsonIgnore
     @JoinColumn(name="id")
     private Usuario usuario;
    

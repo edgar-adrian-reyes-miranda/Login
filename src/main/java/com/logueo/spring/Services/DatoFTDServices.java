@@ -30,17 +30,18 @@ public class DatoFTDServices {
     public DatosFTD crearDatosFTD(DatosFTDDto DatosFTDDto) {
         DatosFTD DatosFTDs= new DatosFTD ();
         DatosFTDs.setArea(DatosFTDDto.getArea());
-        DatosFTDs.setCorreo_becario(DatosFTDDto.getCorreo_becario());
         DatosFTDs.setFecha_ingreso(DatosFTDDto.getFecha_ingreso());
         DatosFTDs.setFecha_termino(DatosFTDDto.getFecha_termino());
         DatosFTDs.setMatricula_ftd(DatosFTDDto.getMatricula_ftd());
-        DatosFTDs.setDatosPersonales(DatosFTDDto.getDatosPersonales());
+        DatosFTDs.setCorreo_becario(DatosFTDDto.getCorreo_becario());
+        DatosFTDs.setBeca(DatosFTDDto.getBeca());
+        DatosFTDs.setBecadocumenot(DatosFTDDto.getBecadocumenot());
         DatosFTDs.setCursos(DatosFTDDto.getCursos());
         DatosFTDs.setEstatusInfotec(DatosFTDDto.getEstatusInfotec());
-        DatosFTDs.setModalidad(DatosFTDDto.getModalidad());
         DatosFTDs.setEnlace(DatosFTDDto.getEnlace());
         DatosFTDs.setGrupos(DatosFTDDto.getGrupos());
         DatosFTDs.setTutores(DatosFTDDto.getTutores());
+        DatosFTDs.setProyectos(DatosFTDDto.getProyectos());
         DatosFTDs.setDatosPersonales(DatosFTDDto.getDatosPersonales());
         return datosFTDRepository.save(DatosFTDs);
     }
@@ -64,11 +65,12 @@ public class DatoFTDServices {
           DatosFTD.setEstatusInfotec(DatosFTDDto.getEstatusInfotec());
           DatosFTD.setDatosPersonales(DatosFTDDto.getDatosPersonales());
           DatosFTD.setCursos(DatosFTDDto.getCursos());
-          DatosFTD.setModalidad(DatosFTDDto.getModalidad());
           DatosFTD.setEnlace(DatosFTDDto.getEnlace());
           DatosFTD.setGrupos(DatosFTDDto.getGrupos());
           DatosFTD.setTutores(DatosFTDDto.getTutores());
-          DatosFTD.setDatosPersonales(DatosFTDDto.getDatosPersonales());
+          DatosFTD.setBeca(DatosFTDDto.getBeca());
+          DatosFTD.setBecadocumenot(DatosFTDDto.getBecadocumenot());
+          DatosFTD.setProyectos(DatosFTDDto.getProyectos());
             return datosFTDRepository.save(DatosFTD);
         }else {
             return null;

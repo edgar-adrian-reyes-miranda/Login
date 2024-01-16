@@ -21,7 +21,7 @@ public class Perfilamiento {
     private String nombre;
 
     @OneToMany(mappedBy = "perfilamiento",fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("perfilamiento")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     private List<DatosIngresos>datosIngresos;
 
 }

@@ -20,7 +20,7 @@ public class Modalidad {
     private Long id_modalida;
     private String tipo_modalidad;
     @OneToMany(mappedBy = "modalidad", fetch = FetchType.EAGER)
-     @JsonIgnoreProperties("modalidad")
-    private List<DatosFTD> datosFTDS;
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    private List<DatosIngresos> datosIngresos;
 
 }
