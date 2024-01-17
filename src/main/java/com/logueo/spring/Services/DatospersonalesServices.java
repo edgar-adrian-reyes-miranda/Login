@@ -43,18 +43,12 @@ public class DatospersonalesServices {
         DatosPersonaless.setS_apellido(DatosPersonalesDto.getS_apellido());
         DatosPersonaless.setTelefono(DatosPersonalesDto.getTelefono());
         DatosPersonaless.setTelefono_casa(DatosPersonalesDto.getTelefono_casa());
-        /*Genero genero = DatosPersonalesDto.getGenero();
-        if(genero != null) {
-        	Long generoId= genero.getId_genero();
-        	Genero generorecuperado= generoRepository.findById(generoId).orElse(null);
-        	DatosPersonaless.setGenero(generorecuperado);
-        }*/
         DatosPersonaless.setGenero(DatosPersonalesDto.getGenero());
         DatosPersonaless.setEstados(DatosPersonalesDto.getEstados());
         DatosPersonaless.setMunicipio(DatosPersonalesDto.getMunicipio());
-        DatosPersonaless.setDatosEscolares(DatosPersonalesDto.getEscolares());
+        DatosPersonaless.setDatosEscolares(DatosPersonalesDto.getDatosEscolares());
         DatosPersonaless.setDatosIngresos(DatosPersonalesDto.getIngresos());
-        DatosPersonaless.setDatosFTDs(DatosPersonalesDto.getDatosFTDs());
+        DatosPersonaless.setDatosFTD(DatosPersonalesDto.getDatosFTD());
         return datosPersonalesRepository.save(DatosPersonaless);
     }
 
@@ -79,21 +73,11 @@ public class DatospersonalesServices {
           DatosPersonales.setTelefono(DatosPersonalesDto.getTelefono());
           DatosPersonales.setTelefono_casa(DatosPersonalesDto.getTelefono_casa());
           DatosPersonales.setGenero(DatosPersonalesDto.getGenero());
-          /*
-          Genero genero = DatosPersonalesDto.getGenero();
-          if (genero != null) {
-              Long generoId = genero.getId_genero(); 
-              Genero generoRecuperado = generoRepository.findById(generoId).orElse(null);
-              DatosPersonales.setGenero(generoRecuperado);
-          } else {
-              DatosPersonales.setGenero(null); 
-          }*/
-          
           DatosPersonales.setMunicipio(DatosPersonalesDto.getMunicipio());
           DatosPersonales.setEstados(DatosPersonalesDto.getEstados());
-          DatosPersonales.setDatosFTDs(DatosPersonalesDto.getDatosFTDs());
+          DatosPersonales.setDatosFTD(DatosPersonalesDto.getDatosFTD());
           DatosPersonales.setDatosIngresos(DatosPersonalesDto.getIngresos());
-          DatosPersonales.setDatosEscolares(DatosPersonalesDto.getEscolares());
+          DatosPersonales.setDatosEscolares(DatosPersonalesDto.getDatosEscolares());
             return datosPersonalesRepository.save(DatosPersonales);
         }else {
             return null;

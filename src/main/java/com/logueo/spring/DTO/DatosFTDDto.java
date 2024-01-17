@@ -12,24 +12,24 @@ public class DatosFTDDto implements Serializable {
 
     private static final long serialVersionUID=1L;
     private String area;
-    private String fecha_ingreso;
-    private String fecha_termino;
-    private String correo_becario;
-    private String matricula_ftd;
     private String beca;
     private String becadocumenot;
+    private String fecha_ingreso;
+    private String fecha_termino;
+    private String matricula_ftd;
+    private String correo_becario;
 
-    private List<Cursos> cursos;
-
-    private EstatusInfotec estatusInfotec;
-
-    private Enlace enlace;
-
-    private Grupos grupos;
+    private List<Proyectos> proyectos;
 
     private Tutores tutores;
 
-    private List<Proyectos> proyectos;
+    private Grupos grupos;
+
+    private Enlace enlace;
+
+    private EstatusInfotec estatusInfotec;
+
+    private List<Cursos> cursos;
 
     private DatosPersonales datosPersonales;
 }

@@ -15,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="proyecto")
 @Where(clause = "status= true")
 public class Proyectos {
@@ -27,8 +26,8 @@ public class Proyectos {
     private String evaluacion;
 
     @ManyToMany(mappedBy = "proyectos", fetch = FetchType.EAGER)
-    //@JsonIgnoreProperties
-    private List<DatosFTD> datosFTDS;
+    @JsonIgnore
+    private List<DatosFTD> datosFTD;
 
     @Column(name="status", columnDefinition = "boolean DEFAULT  'true'")
     private Boolean status=true;

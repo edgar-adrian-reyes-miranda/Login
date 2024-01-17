@@ -7,12 +7,17 @@ import java.io.Serializable;
 @Data
 public class DatosEscolaresDto implements Serializable {
     private static final long serialVersionUID=1L;
-    private String matricula;
     private String correo_inst;
     private String carrera;
-    private Periodo periodo;
+    private String matricula;
+
     private Universidades universidades;
-    private PlanEducativo planEducativo;
+
     private ModalidadesEscolares modalidadesEscolares;
+
+    private PlanEducativo planEducativo;
+
+    private Periodo periodo;
+
     private DatosPersonales datosPersonales;
 }

@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="cursos")
 public class Cursos {
     @Id
@@ -22,7 +21,8 @@ public class Cursos {
     private String nombre;
     private String tipo_estatus;
     private String unidad;
+
     @ManyToMany(mappedBy = "cursos",fetch = FetchType.EAGER)
-    //@JsonIgnoreProperties
-    private List<DatosFTD> datosFTDs;
+    @JsonIgnore
+    private List<DatosFTD> datosFTD;
 }

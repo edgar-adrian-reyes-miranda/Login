@@ -22,31 +22,32 @@ public class DatosIngresos {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tramite_id")
-    @JsonIgnoreProperties("datosIngresos")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     private Tramite tramite;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("datosIngresos")
-    @JoinColumn(name = "perfilamiento_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     private Perfilamiento perfilamiento;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("datosIngresos")
-    @JoinColumn(name = "horario_id")
-    private Horarios horarios;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("datosIngresos")
-    @JoinColumn(name="modalida_id")
-    private Modalidad modalidad;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("datosIngresos")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     @JoinColumn(name="turno_id")
     private Turno turno;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JoinColumn(name = "horario_id")
+    private Horarios horarios;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JoinColumn(name="modalida_id")
+    private Modalidad modalidad;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     @JoinColumn(name = "person_id")
     private DatosPersonales datosPersonales;
+
+    //@JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
 }

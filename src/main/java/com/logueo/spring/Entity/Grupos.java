@@ -1,5 +1,6 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,15 +14,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="grupo")
 public class Grupos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_grupo;
     private String nombre;
-    @OneToMany(mappedBy = "grupos",fetch = FetchType.LAZY)
-    //@JsonIgnoreProperties
-    private List<DatosFTD> datosFTDS;
+    @OneToMany(mappedBy = "grupos",fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<DatosFTD> datosFTD;
 
 }

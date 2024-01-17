@@ -9,10 +9,16 @@ public class DatosIngresosDto implements Serializable {
     private static final long serialVersionUID=1L;
     private String cv;
     private String historial_Academico;
+
     private Tramite tramite;
+
     private Perfilamiento perfilamiento;
-    private Horarios horarios;
+
     private Turno turno;
+
+    private Horarios horarios;
+
     private Modalidad modalidad;
+    
     private DatosPersonales datosPersonales;
 }

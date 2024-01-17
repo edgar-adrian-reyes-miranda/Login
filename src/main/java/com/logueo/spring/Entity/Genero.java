@@ -20,6 +20,6 @@ public class Genero {
     private Long id_genero;
     private String tipo_genero;
     @OneToMany(mappedBy = "genero", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("genero")
+    @JsonIgnore
     private List<DatosPersonales> datosPersonales;
 }

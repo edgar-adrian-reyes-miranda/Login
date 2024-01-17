@@ -1,5 +1,6 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,6 @@ public class Horarios {
     private Long id_horario;
     private String horario;
     @OneToMany(mappedBy = "horarios", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JsonIgnore
     private List<DatosIngresos> datosIngresos;
 }

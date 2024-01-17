@@ -21,7 +21,7 @@ public class Tramite {
     private Long id_tramite;
     private String tipo_tramite;
     @OneToMany(mappedBy = "tramite",fetch = FetchType.EAGER)
-    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JsonIgnore
     private List<DatosIngresos> datosIngresos;
 
 }

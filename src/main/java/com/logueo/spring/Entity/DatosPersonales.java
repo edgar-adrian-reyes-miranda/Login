@@ -37,22 +37,21 @@ public class DatosPersonales {
     private String correo;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("datosPersonales")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     @JoinColumn(name = "genero_id")
     private Genero genero;
-    
+
     @OneToMany(mappedBy = "datosPersonales", fetch = FetchType.EAGER)
-    //@JsonIgnore
-    private List<DatosFTD> datosFTDs;
+    @JsonIgnore
+    private List<DatosEscolares> datosEscolares;
 
     @OneToMany(mappedBy = "datosPersonales", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<DatosIngresos> datosIngresos;
-      
+
     @OneToMany(mappedBy = "datosPersonales", fetch = FetchType.EAGER)
     @JsonIgnore
-    private List<DatosEscolares> datosEscolares;   
-    
+    private List<DatosFTD> datosFTD;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore

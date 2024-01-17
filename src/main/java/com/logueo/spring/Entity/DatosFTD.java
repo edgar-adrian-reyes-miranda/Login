@@ -15,57 +15,56 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="ftd")
 public class DatosFTD {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_ftd;
     private String area;
-    private String fecha_ingreso;
-    private String fecha_termino;
-    private String correo_becario;
-    private String matricula_ftd;
     private String beca;
     private String becadocumenot;
-    
+    private String fecha_ingreso;
+    private String fecha_termino;
+    private String matricula_ftd;
+    private String correo_becario;
+
+
     @ManyToMany(fetch = FetchType.EAGER)
-    //@JsonIgnoreProperties
-    @JoinTable(name="ftd_cursos",
-    joinColumns = @JoinColumn(name = "ftd_id"),
-    inverseJoinColumns = @JoinColumn(name="curso_id"))
-    private List<Cursos> cursos;
+    @JoinTable(name="ftd_proyectos",
+            joinColumns= @JoinColumn(name="ftd_id"),
+            inverseJoinColumns = @JoinColumn(name="proyecto_id"))
+    @JsonIgnore
+    private List<Proyectos> proyectos;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    //@JsonIgnoreProperties
-    @JoinColumn(name="estatus_id")
-    private EstatusInfotec estatusInfotec;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    //@JsonIgnoreProperties
-    @JoinColumn(name = "enlace_id")
-    private Enlace enlace;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    //@JsonIgnoreProperties
-    @JoinColumn(name = "grupo_id")
-    private Grupos grupos;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    //@JsonIgnoreProperties
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     @JoinColumn(name = "tutor_id")
     private Tutores tutores;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JoinColumn(name = "grupo_id")
+    private Grupos grupos;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JoinColumn(name = "enlace_id")
+    private Enlace enlace;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JoinColumn(name="estatus_id")
+    private EstatusInfotec estatusInfotec;
+    
     @ManyToMany(fetch = FetchType.EAGER)
-    //@JsonIgnoreProperties
-    @JoinTable(name="ftd_proyectos",
-    joinColumns= @JoinColumn(name="ftd_id"),
-    inverseJoinColumns = @JoinColumn(name="proyecto_id"))
-    private List<Proyectos> proyectos;
+    @JoinTable(name="ftd_cursos",
+    joinColumns = @JoinColumn(name = "ftd_id"),
+    inverseJoinColumns = @JoinColumn(name="curso_id"))
+    @JsonIgnore
+    private List<Cursos> cursos;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    //@JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     @JoinColumn(name = "person_id")
     private DatosPersonales datosPersonales;
 

@@ -13,6 +13,7 @@ public class UsuarioDto implements Serializable{
 	private String username;
 	private String password;
 	private String correo;
-	//private List<DatosPersonales> datosPersonales;
+
+	private List<DatosPersonales> datosPersonales;
 
 }
