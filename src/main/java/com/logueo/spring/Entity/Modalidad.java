@@ -1,6 +1,6 @@
 package com.logueo.spring.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class Modalidad {
     private Long id_modalida;
     private String tipo_modalidad;
     @OneToMany(mappedBy = "modalidad", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JsonIgnore
     private List<DatosIngresos> datosIngresos;
 
 }

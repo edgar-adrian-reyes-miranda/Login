@@ -1,5 +1,6 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -26,7 +27,7 @@ public class Proyectos {
     private String evaluacion;
 
     @ManyToMany(mappedBy = "proyectos", fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonBackReference
     private List<DatosFTD> datosFTD;
 
     @Column(name="status", columnDefinition = "boolean DEFAULT  'true'")

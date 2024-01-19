@@ -1,5 +1,6 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -23,6 +24,6 @@ public class Cursos {
     private String unidad;
 
     @ManyToMany(mappedBy = "cursos",fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JsonBackReference
     private List<DatosFTD> datosFTD;
 }

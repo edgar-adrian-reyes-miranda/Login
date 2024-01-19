@@ -27,6 +27,7 @@ public class DatosIngresos {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JoinColumn(name="perfilamiento_id")
     private Perfilamiento perfilamiento;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -48,6 +49,7 @@ public class DatosIngresos {
     @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     @JoinColumn(name = "person_id")
     private DatosPersonales datosPersonales;
+
 
     //@JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
 }

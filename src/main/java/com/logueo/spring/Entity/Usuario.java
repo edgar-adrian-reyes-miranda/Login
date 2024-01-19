@@ -22,7 +22,4 @@ public class Usuario {
 	private String password;
 	private String correo;
 
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	@JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
-	private List<DatosPersonales> datosPersonales;
 }

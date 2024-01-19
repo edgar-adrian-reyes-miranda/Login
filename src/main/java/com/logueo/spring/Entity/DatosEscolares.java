@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,10 +42,10 @@ public class DatosEscolares {
     @JoinColumn(name="periodo_id")
     private Periodo periodo;
     
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne( fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     @JoinColumn(name ="person_id")
     private DatosPersonales datosPersonales;
-    
+
     
 }

@@ -14,9 +14,7 @@ import java.util.List;
 public class DatospersonalesServices {
     @Autowired
     private DatosPersonalesRepository datosPersonalesRepository;
-    //@Autowired
-    //private GeneroRepository generoRepository;
-    
+
       //Obtener todos los alumnos
     @Transactional(readOnly = true)
     public List<DatosPersonales> findAllPersonal(){
@@ -78,6 +76,7 @@ public class DatospersonalesServices {
           DatosPersonales.setDatosFTD(DatosPersonalesDto.getDatosFTD());
           DatosPersonales.setDatosIngresos(DatosPersonalesDto.getIngresos());
           DatosPersonales.setDatosEscolares(DatosPersonalesDto.getDatosEscolares());
+
             return datosPersonalesRepository.save(DatosPersonales);
         }else {
             return null;

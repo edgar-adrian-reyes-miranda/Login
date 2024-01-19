@@ -19,6 +19,7 @@ public class ModalidadesEscolares {
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long id_modalidad;
     private String tipo_modalidad;
+
     @OneToMany(mappedBy = "modalidadesEscolares",fetch = FetchType.EAGER)
     @JsonIgnore
     private List<DatosEscolares> datosEscolares;

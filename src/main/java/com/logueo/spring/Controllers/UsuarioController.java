@@ -1,85 +1,64 @@
 package com.logueo.spring.Controllers;
 
-import com.logueo.spring.DTO.AdministradorDto;
 import com.logueo.spring.DTO.UsuarioDto;
-import com.logueo.spring.Entity.Administrador;
 import com.logueo.spring.Entity.Usuario;
-import com.logueo.spring.Repository.AdminsitradorRepository;
-import com.logueo.spring.Repository.UsuarioRepository;
+import com.logueo.spring.Services.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/usuarios")
 @CrossOrigin(origins = {"http://localhost:4200"})
 public class UsuarioController {
+    @Autowired
+    private UsuarioServices usuarioServices;
 
-	@Autowired
-	private UsuarioRepository usuarioRepository;
+    @GetMapping({"/lista"})
+    public List<Usuario> getAllUsuarios() {
+        return usuarioServices.findAllUsuarios();
+    }
 
-	@PostMapping(path = {"/registro"})
-	public String registroUsuario(@RequestBody UsuarioDto usuariodto) {
-		if (usuarioRepository.findByUsername(usuariodto.getUsername()) != null) {
-			return "El nombre de usuario ya está en uso. Por favor, elige otro.";
-		}
+    @GetMapping({"/{id}"})
+    public Usuario getUsuarioById(@PathVariable Long id) {
+        return usuarioServices.findByIdUsuarios(id);
+    }
 
-		Usuario usuario = new Usuario();
-		usuario.setUsername(usuariodto.getUsername());
-		usuario.setPassword(usuariodto.getPassword());
-		usuario.setCorreo(usuariodto.getCorreo());
+    @PostMapping({"/registro"})
+    public Usuario registroUsuario(@RequestBody UsuarioDto usuarioDto) {
+        return usuarioServices.crearUsuario(usuarioDto);
+    }
 
-		System.out.println("Credenciales durante el registro: " + usuariodto.getUsername() + ", " + usuariodto.getPassword());
+    @PostMapping({"/login"})
+    public ResponseEntity<String> login(@RequestBody UsuarioDto usuarioDto) {
+        try {
+            boolean autenticado = realizarAuthenticacion(usuarioDto.getUsername(), usuarioDto.getPassword());
 
-		usuarioRepository.save(usuario);
-		return "Registro exitoso";
-	}
+            if (autenticado) {
+                return ResponseEntity.status(HttpStatus.OK).body("exito");
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales Incorrectas");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en el servidor");
+        }
+    }
 
+    @DeleteMapping({"/{id}"})
+    public void eliminarUsuario(@PathVariable Long id) {
+        usuarioServices.EliminarUsuario(id);
+    }
 
-	@PostMapping(path="/login")
-	public String login(@RequestBody UsuarioDto loginDTO) {
-		Usuario usuario = usuarioRepository.findByUsername(loginDTO.getUsername());
+    @PutMapping({"/editar/{id}"})
+    public Usuario editarUsuario(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto) {
+        return usuarioServices.editarUsuarios(id, usuarioDto);
+    }
 
-		System.out.println("Credenciales durante el login: " + loginDTO.getUsername() + ", " + loginDTO.getPassword());
-
-		if (usuario != null && loginDTO.getPassword().equals(usuario.getPassword())) {
-			return "Inicio de sesión exitoso";
-		} else {
-			return "Credenciales incorrectas. Por favor, inténtalo de nuevo.";
-		}
-	}
-
-	@Autowired
-	private AdminsitradorRepository adminsitradorRepository;
-	@PostMapping(path = {"/registroadmin"})
-	public String registroAdmin(@RequestBody AdministradorDto usuariodto) {
-		if (adminsitradorRepository.findByCorreo(usuariodto.getCorreo()) != null) {
-			return "El correo  ya está en uso. Por favor, elige otro.";
-		}
-
-		Administrador admin = new Administrador();
-		admin.setPassword(usuariodto.getPassword());
-		admin.setCorreo(usuariodto.getCorreo());
-
-		System.out.println("Credenciales durante el registro: " + usuariodto.getCorreo() + ", " + usuariodto.getPassword());
-
-		adminsitradorRepository.save(admin);
-		return "Registro exitoso administrador";
-	}
-
-
-	@PostMapping(path="/loginadmin")
-	public String loginadmin(@RequestBody AdministradorDto loginDTO) {
-		Administrador admin = adminsitradorRepository.findByCorreo(loginDTO.getCorreo());
-
-		System.out.println("Credenciales durante el login de administrador: " + loginDTO.getCorreo() + ", " + loginDTO.getPassword());
-
-		if (admin != null && loginDTO.getPassword().equals(admin.getPassword())) {
-			return "Inicio de sesión exitoso administrador";
-		} else {
-			return "Credenciales incorrectas. Por favor, inténtalo de nuevo administrador.";
-		}
-	}
-
-
+    private boolean realizarAuthenticacion(String username, String password){
+        Usuario usuario = usuarioServices.findByUsername(username);
+        return usuario != null && usuario.getPassword().equals(password);
+    }
 }
 

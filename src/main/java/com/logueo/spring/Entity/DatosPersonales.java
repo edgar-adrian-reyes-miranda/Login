@@ -1,5 +1,6 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
@@ -53,9 +54,6 @@ public class DatosPersonales {
     @JsonIgnore
     private List<DatosFTD> datosFTD;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
-    @JoinColumn(name="id")
-    private Usuario usuario;
+
    
 }

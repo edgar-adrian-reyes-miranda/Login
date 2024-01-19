@@ -14,6 +14,7 @@ public class ProyectosDto implements Serializable {
     private String nombre;
     private String avance;
     private String evaluacion;
+
     private List<DatosFTD> datosFTD;
 
 }
