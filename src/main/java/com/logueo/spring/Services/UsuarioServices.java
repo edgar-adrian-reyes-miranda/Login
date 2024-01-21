@@ -56,6 +56,7 @@ public class UsuarioServices {
            usuarios.setUsername(usuarioDto.getUsername());
            usuarios.setCorreo(usuarioDto.getCorreo());
            usuarios.setPassword(usuarioDto.getPassword());
+           usuarios.setDatosPersonales(usuarioDto.getDatosPersonales());
            return usuarioRepository.save(usuarios);
        }else{
            return null;

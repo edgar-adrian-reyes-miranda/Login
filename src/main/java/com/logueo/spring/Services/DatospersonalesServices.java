@@ -47,6 +47,7 @@ public class DatospersonalesServices {
         DatosPersonaless.setDatosEscolares(DatosPersonalesDto.getDatosEscolares());
         DatosPersonaless.setDatosIngresos(DatosPersonalesDto.getIngresos());
         DatosPersonaless.setDatosFTD(DatosPersonalesDto.getDatosFTD());
+        DatosPersonaless.setUsuario(DatosPersonalesDto.getUsuario());
         return datosPersonalesRepository.save(DatosPersonaless);
     }
 
@@ -76,7 +77,7 @@ public class DatospersonalesServices {
           DatosPersonales.setDatosFTD(DatosPersonalesDto.getDatosFTD());
           DatosPersonales.setDatosIngresos(DatosPersonalesDto.getIngresos());
           DatosPersonales.setDatosEscolares(DatosPersonalesDto.getDatosEscolares());
-
+          DatosPersonales.setUsuario(DatosPersonalesDto.getUsuario());
             return datosPersonalesRepository.save(DatosPersonales);
         }else {
             return null;

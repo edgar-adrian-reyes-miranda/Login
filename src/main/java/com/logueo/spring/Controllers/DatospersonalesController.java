@@ -2,8 +2,11 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.DatosPersonalesDto;
 import com.logueo.spring.Entity.DatosPersonales;
+import com.logueo.spring.Repository.DatosPersonalesRepository;
 import com.logueo.spring.Services.DatospersonalesServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +22,21 @@ public class DatospersonalesController {
     @Autowired
     private DatospersonalesServices datospersonalesServices;
 
+    @Autowired
+    private DatosPersonalesRepository datosPersonalesRepository;
+
+
     //mapeo para obtenes la lista de alumnos
     @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<DatosPersonales> obtenertodos(){
         return datospersonalesServices.findAllPersonal();
+    }
+
+    //paginacion
+    @GetMapping(path = {"/paginacion"})
+    public Page<DatosPersonales> getPaginacionDatos(@PageableDefault(page = 0, size = 12) Pageable pageable){
+        return datosPersonalesRepository.findAll(pageable);
     }
 
     //mapeo para obtener alumnos por ID

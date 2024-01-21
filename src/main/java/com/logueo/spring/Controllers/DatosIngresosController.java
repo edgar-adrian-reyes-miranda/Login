@@ -2,8 +2,11 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.DatosIngresosDto;
 import com.logueo.spring.Entity.DatosIngresos;
+import com.logueo.spring.Repository.DatosIngresosRepository;
 import com.logueo.spring.Services.DatosIngresosServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +21,20 @@ import java.util.Map;
 public class DatosIngresosController {
     @Autowired
     private DatosIngresosServices datosIngresosServices;
+    @Autowired
+    private DatosIngresosRepository datosIngresosRepository;
 
     //mapeo para obtenes la lista de alumnos
     @GetMapping(path = {"/lista"})
     @ResponseStatus(HttpStatus.OK)
     public List<DatosIngresos> obtenertodos(){
         return datosIngresosServices.findAllingreso();
+    }
+
+    //paginacion
+    @GetMapping(path = {"/paginacion"})
+    public Page<DatosIngresos> getPaginacionDatos(@PageableDefault(page = 0, size = 12) Pageable pageable){
+        return datosIngresosRepository.findAll(pageable);
     }
 
     //mapeo para obtener alumnos por ID

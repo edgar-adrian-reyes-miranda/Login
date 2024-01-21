@@ -34,6 +34,6 @@ public class DatosPersonalesDto implements Serializable {
 
     private List<DatosFTD> datosFTD;
 
-
+    private Usuario usuario;
 
 }

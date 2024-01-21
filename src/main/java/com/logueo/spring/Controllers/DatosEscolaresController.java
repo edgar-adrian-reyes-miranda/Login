@@ -2,8 +2,11 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.DatosEscolaresDto;
 import com.logueo.spring.Entity.DatosEscolares;
+import com.logueo.spring.Repository.DatosEscolaresRepository;
 import com.logueo.spring.Services.DatosEscolaresServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +22,20 @@ public class DatosEscolaresController {
     @Autowired
     private DatosEscolaresServices datosEscolaresServices;
 
+    @Autowired
+    private DatosEscolaresRepository datosEscolaresRepository;
+
     //mapeo para obtenes la lista de alumnos
     @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<DatosEscolares> obtenertodos(){
         return datosEscolaresServices.findAllEscolares();
+    }
+
+    //paginacion
+    @GetMapping(path = {"/paginacion"})
+    public Page<DatosEscolares> getPaginacionDatos(@PageableDefault(page = 0, size = 12) Pageable pageable){
+        return datosEscolaresRepository.findAll(pageable);
     }
 
     //mapeo para obtener alumnos por ID

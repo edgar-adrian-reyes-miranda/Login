@@ -22,4 +22,8 @@ public class Usuario {
 	private String password;
 	private String correo;
 
+	@OneToMany(mappedBy = "usuario", fetch =  FetchType.EAGER)
+	@JsonIgnore
+	private List<DatosPersonales> datosPersonales;
+
 }

@@ -2,8 +2,11 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.DatosFTDDto;
 import com.logueo.spring.Entity.DatosFTD;
+import com.logueo.spring.Repository.DatosFTDRepository;
 import com.logueo.spring.Services.DatoFTDServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +21,20 @@ import java.util.Map;
 public class DatosftdController {
     @Autowired
     private DatoFTDServices datoFTDServices;
+    @Autowired
+    private DatosFTDRepository datosFTDRepository;
 
     //mapeo para obtenes la lista de alumnos
     @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<DatosFTD> obtenertodos(){
         return datoFTDServices.findAllFTD();
+    }
+
+    //paginacion
+    @GetMapping(path = {"/paginacion"})
+    public Page<DatosFTD> getPaginacionDatos(@PageableDefault(page = 0, size = 12) Pageable pageable){
+        return datosFTDRepository.findAll(pageable);
     }
 
     //mapeo para obtener alumnos por ID

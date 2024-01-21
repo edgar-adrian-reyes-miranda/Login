@@ -54,6 +54,9 @@ public class DatosPersonales {
     @JsonIgnore
     private List<DatosFTD> datosFTD;
     
-
+    @ManyToOne(fetch =  FetchType.EAGER)
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    @JoinColumn(name="id")
+    private Usuario usuario;
    
 }
