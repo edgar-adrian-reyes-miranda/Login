@@ -27,15 +27,15 @@ public class AdministradorServices {
     }
     //correo
     @Transactional(readOnly = true)
-    public Administrador findByCorreo(String correo){
-        return adminsitradorRepository.findByCorreo(correo);
+    public Administrador findByUsername(String username){
+        return adminsitradorRepository.findByUsername(username);
     }
 
     //guardar
     @Transactional
     public Administrador crearAdmins(AdministradorDto administradorDto){
         Administrador admins= new Administrador();
-         admins.setCorreo(administradorDto.getCorreo());
+         admins.setUsername(administradorDto.getUsername());
          admins.setPassword(administradorDto.getPassword());
          return adminsitradorRepository.save(admins);
     }
@@ -51,7 +51,7 @@ public class AdministradorServices {
     public Administrador editarAdministradores(Long id, AdministradorDto administradorDto){
         Administrador admins = adminsitradorRepository.findById(id).orElse(null);
         if (admins != null){
-            admins.setCorreo(administradorDto.getCorreo());
+            admins.setUsername(administradorDto.getUsername());
             admins.setPassword(administradorDto.getPassword());
             return adminsitradorRepository.save(admins);
         }else {

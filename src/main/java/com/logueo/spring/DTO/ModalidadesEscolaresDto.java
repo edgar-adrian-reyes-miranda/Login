@@ -1,11 +1,10 @@
 package com.logueo.spring.DTO;
 
 import com.logueo.spring.Entity.DatosEscolares;
-import com.logueo.spring.Entity.DatosFTD;
 import lombok.Data;
-
 import java.io.Serializable;
 import java.util.List;
+
 @Data
 public class ModalidadesEscolaresDto implements Serializable {
     	

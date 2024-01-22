@@ -5,6 +5,7 @@ import com.logueo.spring.Entity.Usuario;
 import com.logueo.spring.Services.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -16,22 +17,22 @@ public class UsuarioController {
     @Autowired
     private UsuarioServices usuarioServices;
 
-    @GetMapping({"/lista"})
+    @GetMapping("/lista")
     public List<Usuario> getAllUsuarios() {
         return usuarioServices.findAllUsuarios();
     }
 
-    @GetMapping({"/{id}"})
+    @GetMapping("/{id}")
     public Usuario getUsuarioById(@PathVariable Long id) {
         return usuarioServices.findByIdUsuarios(id);
     }
 
-    @PostMapping({"/registro"})
+    @PostMapping(path = "/registro", consumes= MediaType.APPLICATION_JSON_VALUE)
     public Usuario registroUsuario(@RequestBody UsuarioDto usuarioDto) {
         return usuarioServices.crearUsuario(usuarioDto);
     }
 
-    @PostMapping({"/login"})
+    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> login(@RequestBody UsuarioDto usuarioDto) {
         try {
             boolean autenticado = realizarAuthenticacion(usuarioDto.getUsername(), usuarioDto.getPassword());
@@ -46,12 +47,12 @@ public class UsuarioController {
         }
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping("/{id}")
     public void eliminarUsuario(@PathVariable Long id) {
         usuarioServices.EliminarUsuario(id);
     }
 
-    @PutMapping({"/editar/{id}"})
+    @PutMapping("/editar/{id}")
     public Usuario editarUsuario(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto) {
         return usuarioServices.editarUsuarios(id, usuarioDto);
     }

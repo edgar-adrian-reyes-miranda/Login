@@ -16,26 +16,32 @@ public class AdministradorControllers {
     @Autowired
     private AdministradorServices administradorServices;
 
-    @GetMapping({"/lista"})
-    public List<Administrador> getAllAdministradores(){
-        return administradorServices.findAllAdmins();
+    @GetMapping(path = "/lista")
+    public ResponseEntity<List<Administrador>> getAllAdministradores(){
+        List<Administrador> administradores = administradorServices.findAllAdmins();
+        return new ResponseEntity<>(administradores, HttpStatus.OK);
     }
-    @GetMapping({"/{id}"})
-    public Administrador getAdminById(@PathVariable Long id){
-        return  administradorServices.findByIdAdminstrador(id);
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Administrador> getAdminById(@PathVariable Long id){
+    	Administrador ids = administradorServices.findByIdAdminstrador(id);
+        return ids != null?
+        		new ResponseEntity<>(ids, HttpStatus.OK):
+        			new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping({"/registro"})
-    public Administrador registroAdmin(@RequestBody AdministradorDto administradorDto){
-        return administradorServices.crearAdmins(administradorDto);
+    @PostMapping("/registro")
+    public ResponseEntity<Administrador> registroAdmin(@RequestBody AdministradorDto administradorDto){
+    	Administrador nuevo = administradorServices.crearAdmins(administradorDto);
+        return  new ResponseEntity<>(nuevo, HttpStatus.CREATED);
     }
-    @PostMapping({"/login"})
+    
+    @PostMapping(path = "/login")
     public ResponseEntity<String> login(@RequestBody AdministradorDto administradorDto){
         try {
-             boolean authenticado = realiazarauthentication(administradorDto.getCorreo(), administradorDto.getPassword());
+             boolean authenticado = realiazarauthentication(administradorDto.getUsername(), administradorDto.getPassword());
 
             if (authenticado) {
-                return ResponseEntity.status(HttpStatus.OK).body("exito");
+                return ResponseEntity.ok("");
             }else{
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales Incorrectas");
             }
@@ -44,18 +50,22 @@ public class AdministradorControllers {
         }
     }
 
-    @DeleteMapping({"/{id}"})
-    public void EliminarAdministrador(@PathVariable Long id){
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> EliminarAdministrador(@PathVariable Long id){
         administradorServices.EliminarAdmins(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping({"/editar/{id}"})
-    public Administrador editarAdmin(@PathVariable Long id, @RequestBody AdministradorDto administradorDto){
-        return administradorServices.editarAdministradores(id, administradorDto);
+    @PutMapping(path ="/editar/{id}")
+    public ResponseEntity<Administrador> editarAdmin(@PathVariable Long id, @RequestBody AdministradorDto administradorDto){
+    	Administrador editar= administradorServices.editarAdministradores(id, administradorDto);
+     return  editar != null?
+     	new ResponseEntity<>(editar, HttpStatus.OK):
+     	new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    private boolean realiazarauthentication(String correo, String password){
-        Administrador admins = administradorServices.findByCorreo(correo);
+    private boolean realiazarauthentication(String username, String password){
+        Administrador admins = administradorServices.findByUsername(username);
         return admins != null && admins.getPassword().equals(password);
     }
 }

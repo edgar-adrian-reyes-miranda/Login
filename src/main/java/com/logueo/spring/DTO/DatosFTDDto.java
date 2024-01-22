@@ -1,10 +1,8 @@
 package com.logueo.spring.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.logueo.spring.Entity.*;
 import lombok.Data;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 @Data

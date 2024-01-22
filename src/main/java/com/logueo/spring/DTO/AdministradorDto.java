@@ -7,6 +7,6 @@ import java.io.Serializable;
 public class AdministradorDto implements Serializable {
 
     private static final long serialVersionUID=1L;
-    private String correo;
+    private String username;
     private String password;
 }
