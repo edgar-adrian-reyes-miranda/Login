@@ -2,11 +2,11 @@ package com.logueo.spring.Services;
 
 import com.logueo.spring.DTO.UsuarioDto;
 import com.logueo.spring.Entity.Usuario;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.logueo.spring.Repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -37,7 +37,7 @@ public class UsuarioServices {
     public Usuario crearUsuario(UsuarioDto usuarioDto){
        Usuario usuarios = new Usuario();
        usuarios.setUsername(usuarioDto.getUsername());
-       usuarios.setPassword(usuarioDto.getPassword());
+       usuarios.setPassword(BCrypt.hashpw(usuarioDto.getPassword(), BCrypt.gensalt()));
        usuarios.setCorreo(usuarioDto.getCorreo());
        return usuarioRepository.save(usuarios);
     }
@@ -55,7 +55,7 @@ public class UsuarioServices {
        if (usuarios != null){
            usuarios.setUsername(usuarioDto.getUsername());
            usuarios.setCorreo(usuarioDto.getCorreo());
-           usuarios.setPassword(usuarioDto.getPassword());
+           usuarios.setPassword(BCrypt.hashpw(usuarioDto.getPassword(), BCrypt.gensalt()));
            usuarios.setDatosPersonales(usuarioDto.getDatosPersonales());
            return usuarioRepository.save(usuarios);
        }else{

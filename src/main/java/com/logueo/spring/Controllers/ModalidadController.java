@@ -14,7 +14,8 @@ import java.util.List;
 public class ModalidadController {
     @Autowired
     private ModalidadServices modalidadServices;
-    //mapeo para obtenes la lista de alumnos
+    
+  //mapeo para obtenes la lista
     @GetMapping(path = {"/lista"})
     @ResponseStatus(HttpStatus.OK)
     public List<Modalidad> obtenertodos(){

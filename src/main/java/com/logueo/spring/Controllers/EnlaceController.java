@@ -19,62 +19,58 @@ public class EnlaceController {
     @Autowired
     private EnlaceServices enlaceServices;
 
-    //mapeo para obtenes la lista de alumnos
+    //mapeo para obtenes la lista
     @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
-    public List<Enlace> obtenertodos(){
+    public List<Enlace> obtenertodos() {
         return enlaceServices.findAllEnlace();
     }
 
-    //mapeo para obtener alumnos por ID
+    //consulta por id
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
-        Enlace enlace= null;
+    public ResponseEntity<?> ConsultaporIdEnlace(@PathVariable Long id) {
+        Enlace enlace = null;
         String response = "";
         try {
-            enlace= enlaceServices.findByIdEnlace(id);
+            enlace = enlaceServices.findByIdEnlace(id);
         } catch (Exception e) {
             response = "Error al realizar la consulta. Detalles: ";
             response = response.concat(e.getMessage().concat(e.getMessage().toString()));
             return new ResponseEntity<String>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if (enlace == null) {
-            response = "El alumno con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
+            response = "El Enlace con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
             return new ResponseEntity<String>(response, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Enlace>(enlace, HttpStatus.OK);
     }
 
-    //mapeo para crear alumno
+    //guardar
     @PostMapping(path = "/guardar")
-    public ResponseEntity<?> crearbeca(@RequestBody EnlaceDto becaDto) {
-        Enlace  enlaceNuevo = null;
+    public ResponseEntity<?> crearEnlace(@RequestBody EnlaceDto enlaceDto) {
+        Enlace nuevoenlace = null;
         Map<String, Object> response = new HashMap<>();
-
         try {
-            enlaceNuevo= this.enlaceServices.crearEnlace(becaDto);
+            nuevoenlace = this.enlaceServices.crearEnlace(enlaceDto);
         } catch (Exception e) {
-            response.put("mensaje", "Error al realizar el insert. Detalles: ");
+            response.put("mensaje", "Error al realizar el insert.Detalles:");
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
-            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
-
-
-        response.put("mensaje", "Alumno creado con éxito, con el ID: " + enlaceNuevo.getId_enlace());
-        response.put("Enlace", enlaceNuevo);
+        response.put("mensaje", "El enlace ha sido creado por exito, con el ID :" + nuevoenlace.getId_enlace());
+        response.put("Enlace", nuevoenlace);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
-    //mapeo para eliminar alumno
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
+    //eliminar
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarEnlace(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
-
         try {
-            Enlace delete= this.enlaceServices.findByIdEnlace(id);
-            if (delete == null) {
-                response.put("mensaje", "Error al eliminar. El alumno no existe en la base de datos");
+            Enlace enlaceDelte = this.enlaceServices.findByIdEnlace(id);
+            if (enlaceDelte == null) {
+                response.put("mensaje", "Error al eliminar Al enlace no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
             enlaceServices.eliminarEnlace(id);
@@ -83,29 +79,27 @@ public class EnlaceController {
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "El alumno fue eliminado con éxito.");
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+        response.put("mensaje", "El enlace fue eliminado con exito");
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
-    //mapeo para editar un alumno
+    //editar
     @PutMapping(path = "/editar/{id}")
-    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody EnlaceDto becaDto) {
-        Enlace Editar = null;
-        Map<String, Object> response = new HashMap<>();
-
+    public ResponseEntity<?>editarEnlace(@PathVariable Long id,@RequestBody EnlaceDto enlaceDto){
+        Enlace editar= null;
+        Map<String,Object>response = new HashMap<>();
         try {
-            Editar= this.enlaceServices.editarEnlace(id, becaDto);
-            if (Editar == null) {
-                response.put("mensaje", "Error al editar. El alumno no existe en la base de datos");
-                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+            editar= this.enlaceServices.editarEnlace(id, enlaceDto);
+            if (editar == null){
+                response.put("mensaje","Error al editar, EL enlace no existe en la base de datos");
+                return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
-        } catch (Exception e) {
-            response.put("mensaje", "Error al actualizar en la base de datos. Detalles: ");
+        }catch (Exception e){
+            response.put("mensaje","Error al actualizar en la base de datos. Detalles");
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "Alumno actualizado con éxito, con el ID: " + id);
-        response.put("Enlace", Editar);
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+        response.put("mensaje","Enlace actualizado con exito con el ID"+id);
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 }

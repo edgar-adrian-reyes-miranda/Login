@@ -19,17 +19,17 @@ public class CursosController {
     @Autowired
     private CursosServices cursosServices;
 
-    //mapeo para obtenes la lista de alumnos
+  //mapeo para obtenes la lista
     @GetMapping("/lista")
     @ResponseStatus(HttpStatus.OK)
-    public List<Cursos> obtenertodos(){
+    public List<Cursos> ObtenerCursos(){
         return cursosServices.findAllCurso();
     }
 
-    //mapeo para obtener alumnos por ID
+  //consulta por id
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
+    public ResponseEntity<?> consultaporIdCurso(@PathVariable Long id){
         Cursos curso= null;
         String response = "";
         try {
@@ -40,41 +40,39 @@ public class CursosController {
             return new ResponseEntity<String>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if (curso == null) {
-            response = "El alumno con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
+            response = "El curso con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
             return new ResponseEntity<String>(response, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Cursos>(curso, HttpStatus.OK);
     }
 
-    //mapeo para crear alumno
+  //guardar
     @PostMapping(path = "/guardar")
-    public ResponseEntity<?> crearbeca(@RequestBody CursosDto becaDto) {
+    public ResponseEntity<?> CrearCurso(@RequestBody CursosDto cursosDto) {
         Cursos  cursoNuevo = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            cursoNuevo= this.cursosServices.crearCurso(becaDto);
+            cursoNuevo= this.cursosServices.crearCurso(cursosDto);
         } catch (Exception e) {
             response.put("mensaje", "Error al realizar el insert. Detalles: ");
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-
-        response.put("mensaje", "Alumno creado con éxito, con el ID: " + cursoNuevo.getId_curso());
-        response.put("beca", cursoNuevo);
+        response.put("mensaje", "El curso fue creado con éxito, con el ID: " + cursoNuevo.getId_curso());
+        response.put("Curso", cursoNuevo);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
-    //mapeo para eliminar alumno
+  //Eliminar
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
+    public ResponseEntity<?> EliminarCurso(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
         try {
             Cursos becadelete= this.cursosServices.findByIdcurso(id);
             if (becadelete == null) {
-                response.put("mensaje", "Error al eliminar. El alumno no existe en la base de datos");
+                response.put("mensaje", "Error al eliminar. El curso no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
             cursosServices.eliminarCurso(id);
@@ -83,20 +81,20 @@ public class CursosController {
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "El alumno fue eliminado con éxito.");
+        response.put("mensaje", "El curso fue eliminado con éxito.");
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
-    //mapeo para editar un alumno
+  //Editar
     @PutMapping("/editar/{id}")
-    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody CursosDto becaDto) {
+    public ResponseEntity<?> EditarCurso(@PathVariable Long id, @RequestBody CursosDto cursosDto) {
         Cursos cursoEditar = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            cursoEditar= this.cursosServices.editarCurso(id, becaDto);
+            cursoEditar= this.cursosServices.editarCurso(id, cursosDto);
             if (cursoEditar == null) {
-                response.put("mensaje", "Error al editar. El alumno no existe en la base de datos");
+                response.put("mensaje", "Error al editar. El curso no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
@@ -104,8 +102,8 @@ public class CursosController {
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "Alumno actualizado con éxito, con el ID: " + id);
-        response.put("Beca", cursoEditar);
+        response.put("mensaje", "EL curso actualizado con éxito, con el ID: " + id);
+        response.put("Curso", cursoEditar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 }

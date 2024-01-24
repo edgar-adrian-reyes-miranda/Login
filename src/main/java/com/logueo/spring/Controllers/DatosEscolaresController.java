@@ -25,7 +25,7 @@ public class DatosEscolaresController {
     @Autowired
     private DatosEscolaresRepository datosEscolaresRepository;
 
-    //mapeo para obtenes la lista de alumnos
+    //mapeo para obtenes la lista 
     @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<DatosEscolares> obtenertodos(){
@@ -38,10 +38,10 @@ public class DatosEscolaresController {
         return datosEscolaresRepository.findAll(pageable);
     }
 
-    //mapeo para obtener alumnos por ID
+    //consulta por id
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
+    public ResponseEntity<?> ConsultaporIdEscolares(@PathVariable Long id){
         DatosEscolares beca= null;
         String response = "";
         try {
@@ -52,20 +52,20 @@ public class DatosEscolaresController {
             return new ResponseEntity<String>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if (beca == null) {
-            response = "El alumno con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
+            response = "El Dato Escolar con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
             return new ResponseEntity<String>(response, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<DatosEscolares>(beca, HttpStatus.OK);
     }
 
-    //mapeo para crear alumno
+    //guardar
     @PostMapping(path = "/guardar")
-    public ResponseEntity<?> crearbeca(@RequestBody DatosEscolaresDto becaDto) {
-        DatosEscolares  becaNuevo = null;
+    public ResponseEntity<?> CrearDatoEscolar(@RequestBody DatosEscolaresDto datosEscolaresDto) {
+        DatosEscolares  NuevoEscolar = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            becaNuevo= this.datosEscolaresServices.crearDatosEscolares(becaDto);
+            NuevoEscolar= this.datosEscolaresServices.crearDatosEscolares(datosEscolaresDto);
         } catch (Exception e) {
             response.put("mensaje", "Error al realizar el insert. Detalles: ");
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
@@ -73,42 +73,42 @@ public class DatosEscolaresController {
         }
 
 
-        response.put("mensaje", "Alumno creado con éxito, con el ID: " + becaNuevo.getId_escolar());
-        response.put("beca", becaNuevo);
+        response.put("mensaje", "El dato Escolar creado con éxito, con el ID: " + NuevoEscolar.getId_escolar());
+        response.put("Datos Escolar", NuevoEscolar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
-    //mapeo para eliminar alumno
+    //Eliminar 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
+    public ResponseEntity<?> EliminarDatoEscolar(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
         try {
             DatosEscolares becadelete= this.datosEscolaresServices.findByIdDatosEscolares(id);
             if (becadelete == null) {
-                response.put("mensaje", "Error al eliminar. El alumno no existe en la base de datos");
+                response.put("mensaje", "Error al eliminar. El dato Escolar no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
             datosEscolaresServices.eliminarDatosEscolares(id);
         } catch (Exception e) {
-            response.put("mensaje", "Error al eliminar en base de datos. Detalles: ");
+            response.put("mensaje", "Error al Eliminar el dato Escolar en base de datos. Detalles: ");
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "El alumno fue eliminado con éxito.");
+        response.put("mensaje", "El dato Escolar fue eliminado con éxito.");
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
-    //mapeo para editar un alumno
+    //Editar
     @PutMapping(path = "/editar/{id}")
-    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody DatosEscolaresDto becaDto) {
-        DatosEscolares becaEditar = null;
+    public ResponseEntity<?> EditarDatoEscolar(@PathVariable Long id, @RequestBody DatosEscolaresDto datosEscolaresDto) {
+        DatosEscolares EditarEscolar = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            becaEditar= this.datosEscolaresServices.editarDatosEscolares(id, becaDto);
-            if (becaEditar == null) {
-                response.put("mensaje", "Error al editar. El alumno no existe en la base de datos");
+            EditarEscolar= this.datosEscolaresServices.editarDatosEscolares(id, datosEscolaresDto);
+            if (EditarEscolar == null) {
+                response.put("mensaje", "Error al editar. El dato Escolar no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
@@ -116,8 +116,8 @@ public class DatosEscolaresController {
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "Alumno actualizado con éxito, con el ID: " + id);
-        response.put("Beca", becaEditar);
+        response.put("mensaje", "El dato Escolar actualizado con éxito, con el ID: " + id);
+        response.put("Dato Escolar", EditarEscolar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 }

@@ -15,6 +15,7 @@ import java.util.List;
 public class GeneroController {
     @Autowired
     private GeneroServices generoServices;
+    
     ///obtener todos
     @GetMapping({"/lista"})
     @ResponseStatus(HttpStatus.OK)

@@ -15,7 +15,7 @@ public class TurnoController {
     @Autowired
     private TurnoServices turnoServices;
 
-    //mapeo para obtenes la lista de alumnos
+  //mapeo para obtenes la lista
     @GetMapping("/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<Turno> obtenertodos(){

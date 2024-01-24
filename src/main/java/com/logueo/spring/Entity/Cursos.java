@@ -21,7 +21,7 @@ public class Cursos {
     private String tipo_estatus;
     private String unidad;
 
-    @ManyToMany(mappedBy = "cursos",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "cursos",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonBackReference
     private List<DatosFTD> datosFTD;
 }

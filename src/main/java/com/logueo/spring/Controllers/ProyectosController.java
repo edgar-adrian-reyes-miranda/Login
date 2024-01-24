@@ -19,17 +19,17 @@ public class ProyectosController {
     @Autowired
     private ProyectosServices proyectosServices;
 
-    //mapeo para obtenes la lista de alumnos
+  //mapeo para obtenes la lista
     @GetMapping("/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<Proyectos> obtenertodos(){
         return proyectosServices.findAllProyecto();
     }
 
-    //mapeo para obtener alumnos por ID
+  //consulta por id
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
+    public ResponseEntity<?> ConsultaporIdProyecto(@PathVariable Long id){
         Proyectos proyecto= null;
         String response = "";
         try {
@@ -40,35 +40,32 @@ public class ProyectosController {
             return new ResponseEntity<String>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if (proyecto == null) {
-            response = "El alumno con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
+            response = "El proyecto con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
             return new ResponseEntity<String>(response, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Proyectos>(proyecto, HttpStatus.OK);
     }
 
-    //mapeo para crear alumno
+  //guardar
     @PostMapping(path = "/guardar")
-    public ResponseEntity<?> crearbeca(@RequestBody ProyectosDto becaDto) {
+    public ResponseEntity<?>CrearProyecto(@RequestBody ProyectosDto proyectosDto) {
         Proyectos  Nuevo = null;
         Map<String, Object> response = new HashMap<>();
-
         try {
-            Nuevo= this.proyectosServices.crearProyectos(becaDto);
+            Nuevo= this.proyectosServices.crearProyectos(proyectosDto);
         } catch (Exception e) {
             response.put("mensaje", "Error al realizar el insert. Detalles: ");
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-
-        response.put("mensaje", "Alumno creado con éxito, con el ID: " + Nuevo.getId_proyecto());
+        response.put("mensaje", "Proyecto creado con éxito, con el ID: " + Nuevo.getId_proyecto());
         response.put("Proyectos", Nuevo);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
-    //mapeo para eliminar alumno
+  //Eliminar
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
+    public ResponseEntity<?>EliminarProyecto(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
         try {
@@ -83,20 +80,20 @@ public class ProyectosController {
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "El alumno fue eliminado con éxito.");
+        response.put("mensaje", "El proyecto fue eliminado con éxito.");
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
-    //mapeo para editar un alumno
+  //Editar
     @PutMapping("/editar/{id}")
-    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody ProyectosDto becaDto) {
+    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody ProyectosDto proyectosDto) {
         Proyectos Editar = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            Editar= this.proyectosServices.editarProyectos(id, becaDto);
+            Editar= this.proyectosServices.editarProyectos(id, proyectosDto);
             if (Editar == null) {
-                response.put("mensaje", "Error al editar. El alumno no existe en la base de datos");
+                response.put("mensaje", "Error al editar. El proyecto no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
@@ -104,17 +101,18 @@ public class ProyectosController {
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "Alumno actualizado con éxito, con el ID: " + id);
+        response.put("mensaje", "Proyecto actualizado con éxito, con el ID: " + id);
         response.put("Proyectos", Editar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
-    //eliminacion en cascada
+   ///cambio  de estado
     @PutMapping(path = {"/softdelete/{id}"})
     public void disableProyecto(@PathVariable String id){
         proyectosServices.softDeleteProyectos(id);  ///puedo meter mas servicios para que sean eliminacion en cascada
     }
-    /// restaurar
+
+    //restauracion de estado
     @PutMapping(path = {"/restore/{id}"})
     public ResponseEntity<?> restoreProyectos(@PathVariable String id){
         Map<String, Object>response = new HashMap<>();

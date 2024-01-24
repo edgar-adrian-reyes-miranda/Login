@@ -26,7 +26,7 @@ public class DatospersonalesController {
     private DatosPersonalesRepository datosPersonalesRepository;
 
 
-    //mapeo para obtenes la lista de alumnos
+  //mapeo para obtenes la lista
     @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<DatosPersonales> obtenertodos(){
@@ -39,10 +39,10 @@ public class DatospersonalesController {
         return datosPersonalesRepository.findAll(pageable);
     }
 
-    //mapeo para obtener alumnos por ID
+  //consulta por id
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
+    public ResponseEntity<?> ConsultarporIdPersonal(@PathVariable Long id){
         DatosPersonales personal= null;
         String response = "";
         try {
@@ -59,14 +59,14 @@ public class DatospersonalesController {
         return new ResponseEntity<DatosPersonales>(personal, HttpStatus.OK);
     }
 
-    //mapeo para crear alumno
+  //guardar
     @PostMapping(path = {"/guardar"})
-    public ResponseEntity<?> crearbeca(@RequestBody DatosPersonalesDto becaDto) {
+    public ResponseEntity<?> CrearDatosPersonales(@RequestBody DatosPersonalesDto datosPersonalesDto) {
         DatosPersonales  personalNuevo = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            personalNuevo= this.datospersonalesServices.crearDatosPersonales(becaDto);
+            personalNuevo= this.datospersonalesServices.crearDatosPersonales(datosPersonalesDto);
         } catch (Exception e) {
             response.put("mensaje", "Error al realizar el insert. Detalles: ");
             if(e.getCause() != null){
@@ -81,9 +81,9 @@ public class DatospersonalesController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
-    //mapeo para eliminar alumno
+  //Eliminar
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
+    public ResponseEntity<?> EliminarPersonal(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
 
         try {
@@ -102,14 +102,14 @@ public class DatospersonalesController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
-    //mapeo para editar un alumno
+  //Editar
     @PutMapping(path = "/editar/{id}")
-    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody DatosPersonalesDto becaDto) {
+    public ResponseEntity<?> EditarPersonal(@PathVariable Long id, @RequestBody DatosPersonalesDto datosPersonalesDto) {
         DatosPersonales personalEditar = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            personalEditar= this.datospersonalesServices.editarDatosPersonales(id, becaDto);
+            personalEditar= this.datospersonalesServices.editarDatosPersonales(id, datosPersonalesDto);
             if (personalEditar == null) {
                 response.put("mensaje", "Error al editar. El alumno no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);

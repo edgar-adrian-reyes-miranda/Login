@@ -3,6 +3,7 @@ package com.logueo.spring.Services;
 import com.logueo.spring.DTO.AdministradorDto;
 import com.logueo.spring.Entity.Administrador;
 import com.logueo.spring.Repository.AdminsitradorRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +37,7 @@ public class AdministradorServices {
     public Administrador crearAdmins(AdministradorDto administradorDto){
         Administrador admins= new Administrador();
          admins.setUsername(administradorDto.getUsername());
-         admins.setPassword(administradorDto.getPassword());
+         admins.setPassword(BCrypt.hashpw(administradorDto.getPassword(), BCrypt.gensalt()));
          return adminsitradorRepository.save(admins);
     }
 
@@ -52,7 +53,7 @@ public class AdministradorServices {
         Administrador admins = adminsitradorRepository.findById(id).orElse(null);
         if (admins != null){
             admins.setUsername(administradorDto.getUsername());
-            admins.setPassword(administradorDto.getPassword());
+            admins.setPassword(BCrypt.hashpw(administradorDto.getPassword(), BCrypt.gensalt()));
             return adminsitradorRepository.save(admins);
         }else {
             return null;

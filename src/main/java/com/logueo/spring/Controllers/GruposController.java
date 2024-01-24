@@ -19,17 +19,17 @@ public class GruposController {
     @Autowired
     private GrupoServices grupoServices;
 
-    //mapeo para obtenes la lista de alumnos
+  //mapeo para obtenes la list
     @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<Grupos> obtenertodos(){
         return grupoServices.findAllGrupo();
     }
 
-    //mapeo para obtener alumnos por ID
+  //consulta por id
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> consultarbecaPorID(@PathVariable Long id){
+    public ResponseEntity<?> ConsultaporIDGrupo(@PathVariable Long id){
         Grupos grupo= null;
         String response = "";
         try {
@@ -40,38 +40,38 @@ public class GruposController {
             return new ResponseEntity<String>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if (grupo == null) {
-            response = "El alumno con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
+            response = "El Grupo con el ID: ".concat(id.toString()).concat(" no existe en la base de datos");
             return new ResponseEntity<String>(response, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<Grupos>(grupo, HttpStatus.OK);
     }
 
-    //mapeo para crear alumno
+  //guardar
     @PostMapping(path = "/guardar")
-    public ResponseEntity<?> crearbeca(@RequestBody GruposDto becaDto) {
+    public ResponseEntity<?> crearbeca(@RequestBody GruposDto gruposDto) {
         Grupos  Nuevo = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            Nuevo= this.grupoServices.crearGrupos(becaDto);
+           Nuevo= this.grupoServices.crearGrupos(gruposDto);
         } catch (Exception e) {
             response.put("mensaje", "Error al realizar el insert. Detalles: ");
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "Alumno creado con éxito, con el ID: " + Nuevo.getId_grupo());
+        response.put("mensaje", "Grupo creado con éxito, con el ID: " + Nuevo.getId_grupo());
         response.put("Grupo", Nuevo);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
-    //mapeo para eliminar alumno
+  //Eliminar
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> eliminarbeca(@PathVariable Long id) {
         Map<String, Object> response = new HashMap<>();
         try {
             Grupos delete= this.grupoServices.findByIdGrupos(id);
             if (delete == null) {
-                response.put("mensaje", "Error al eliminar. El alumno no existe en la base de datos");
+                response.put("mensaje", "Error al eliminar. El Grupo no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
             grupoServices.eliminarGrupos(id);
@@ -80,19 +80,19 @@ public class GruposController {
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "El alumno fue eliminado con éxito.");
+        response.put("mensaje", "El Grupo fue eliminado con éxito.");
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
-    //mapeo para editar un alumno
+  //Editar
     @PutMapping(path = "/editar/{id}")
-    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody GruposDto becaDto) {
+    public ResponseEntity<?> editarbeca(@PathVariable Long id, @RequestBody GruposDto gruposDto) {
         Grupos Editar = null;
         Map<String, Object> response = new HashMap<>();
         try {
-            Editar= this.grupoServices.editarGrupos(id, becaDto);
+            Editar= this.grupoServices.editarGrupos(id, gruposDto);
             if (Editar == null) {
-                response.put("mensaje", "Error al editar. El alumno no existe en la base de datos");
+                response.put("mensaje", "Error al editar. El Grupo no existe en la base de datos");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
@@ -100,7 +100,7 @@ public class GruposController {
             response.put("error", e.getMessage().concat(e.getCause().getLocalizedMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "Alumno actualizado con éxito, con el ID: " + id);
+        response.put("mensaje", "Grupo actualizado con éxito, con el ID: " + id);
         response.put("Grupos", Editar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }

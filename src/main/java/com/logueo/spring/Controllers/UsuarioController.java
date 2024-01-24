@@ -16,22 +16,26 @@ import java.util.List;
 public class UsuarioController {
     @Autowired
     private UsuarioServices usuarioServices;
-
+    
+  //mapeo para obtenes la lista
     @GetMapping("/lista")
     public List<Usuario> getAllUsuarios() {
         return usuarioServices.findAllUsuarios();
     }
-
+    
+  //consulta por id
     @GetMapping("/{id}")
     public Usuario getUsuarioById(@PathVariable Long id) {
         return usuarioServices.findByIdUsuarios(id);
     }
-
+    
+  //guardar
     @PostMapping(path = "/registro", consumes= MediaType.APPLICATION_JSON_VALUE)
     public Usuario registroUsuario(@RequestBody UsuarioDto usuarioDto) {
         return usuarioServices.crearUsuario(usuarioDto);
     }
 
+  //guardar
     @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> login(@RequestBody UsuarioDto usuarioDto) {
         try {
@@ -47,11 +51,13 @@ public class UsuarioController {
         }
     }
 
+  //Eliminar
     @DeleteMapping("/{id}")
     public void eliminarUsuario(@PathVariable Long id) {
         usuarioServices.EliminarUsuario(id);
     }
-
+    
+  //Editar
     @PutMapping("/editar/{id}")
     public Usuario editarUsuario(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto) {
         return usuarioServices.editarUsuarios(id, usuarioDto);

@@ -16,7 +16,7 @@ public class PlanEducativoController {
     private PlanEducativoServices planEducativoServices;
 
     
-    //mapeo para obtenes la lista de alumnos
+  //mapeo para obtenes la lista
     @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
     public List<PlanEducativo> obtenertodos() {

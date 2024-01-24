@@ -25,30 +25,6 @@ public class EstatusInfotecServices {
         return estatusInfotecRepository.findById(id).orElse(null);
     }
 
-    //Crear alumno
-    @Transactional
-    public EstatusInfotec crearEstatusInfotec(EstatusInfotecDto EstatusInfotecDto) {
-        EstatusInfotec EstatusInfotecs= new EstatusInfotec ();
-        EstatusInfotecs.setTipo_estaus(EstatusInfotecDto.getTipo_estatus());
-        return estatusInfotecRepository.save(EstatusInfotecs);
-    }
 
-    //Eliminar
-    @Transactional
-    public void eliminarEstatusInfotec(Long id) {
-        estatusInfotecRepository.deleteById(id);
-    }
-
-    //Editar
-    @Transactional
-    public EstatusInfotec editarEstatusInfotec(Long id, EstatusInfotecDto EstatusInfotecDto) {
-        EstatusInfotec EstatusInfotec = estatusInfotecRepository.findById(id).orElse(null);
-        if(EstatusInfotec != null) {
-          EstatusInfotec.setTipo_estaus(EstatusInfotecDto.getTipo_estatus());
-            return estatusInfotecRepository.save(EstatusInfotec);
-        }else {
-            return null;
-        }
-    }
 }
 
