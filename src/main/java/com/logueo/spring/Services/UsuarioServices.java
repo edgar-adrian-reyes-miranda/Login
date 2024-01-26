@@ -13,6 +13,9 @@ import java.util.List;
 public class UsuarioServices {
    @Autowired
    private UsuarioRepository usuarioRepository;
+   
+   @Autowired
+   private AuthService authService;
 
    //lista general
     @Transactional(readOnly = true)
@@ -62,4 +65,13 @@ public class UsuarioServices {
            return null;
        }
     }
+    
+    //verificacion
+    @Transactional(readOnly = true)
+    public boolean VerificarCredencial(String username, String passwordplana) {
+    	Usuario usuario = usuarioRepository.findByUsername(username);
+    	
+    	return usuario != null && authService.verificarContraseña(passwordplana, usuario.getPassword()); 
+    }
+    
 }

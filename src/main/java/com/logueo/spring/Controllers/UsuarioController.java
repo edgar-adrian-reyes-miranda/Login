@@ -5,7 +5,6 @@ import com.logueo.spring.Entity.Usuario;
 import com.logueo.spring.Services.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -30,16 +29,16 @@ public class UsuarioController {
     }
     
   //guardar
-    @PostMapping(path = "/registro", consumes= MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/registro")
     public Usuario registroUsuario(@RequestBody UsuarioDto usuarioDto) {
         return usuarioServices.crearUsuario(usuarioDto);
     }
 
   //guardar
-    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/login")
     public ResponseEntity<String> login(@RequestBody UsuarioDto usuarioDto) {
         try {
-            boolean autenticado = realizarAuthenticacion(usuarioDto.getUsername(), usuarioDto.getPassword());
+            boolean autenticado =  usuarioServices.VerificarCredencial(usuarioDto.getUsername(), usuarioDto.getPassword());
 
             if (autenticado) {
                 return ResponseEntity.status(HttpStatus.OK).body("exito");
@@ -63,9 +62,6 @@ public class UsuarioController {
         return usuarioServices.editarUsuarios(id, usuarioDto);
     }
 
-    private boolean realizarAuthenticacion(String username, String password){
-        Usuario usuario = usuarioServices.findByUsername(username);
-        return usuario != null && usuario.getPassword().equals(password);
-    }
+   
 }
 

@@ -3,7 +3,9 @@ package com.logueo.spring.Services;
 import com.logueo.spring.DTO.AdministradorDto;
 import com.logueo.spring.Entity.Administrador;
 import com.logueo.spring.Repository.AdminsitradorRepository;
+
 import org.mindrot.jbcrypt.BCrypt;
+//import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,9 @@ import java.util.List;
 public class AdministradorServices {
     @Autowired
     private AdminsitradorRepository adminsitradorRepository;
+    
+    @Autowired 
+    private AuthService authService;
 
     //listas
     @Transactional(readOnly = true)
@@ -58,5 +63,12 @@ public class AdministradorServices {
         }else {
             return null;
         }
+    }
+    
+    //verificacion
+    @Transactional(readOnly = true)
+    public boolean VerificaAdminCredencial(String username, String passwordplana) {
+    	Administrador admin= adminsitradorRepository.findByUsername(username);
+    	return admin != null && authService.verificarContraseña(passwordplana, admin.getPassword());
     }
 }

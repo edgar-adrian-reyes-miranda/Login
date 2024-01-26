@@ -1,6 +1,6 @@
 package com.logueo.spring.Controllers;
 
-import org.mindrot.jbcrypt.BCrypt;
+
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.*;
@@ -44,7 +44,7 @@ public class AdministradorControllers {
     @PostMapping(path = "/login")
     public ResponseEntity<String> login(@RequestBody AdministradorDto administradorDto){
         try {
-             boolean authenticado = realiazarauthentication(administradorDto.getUsername(), administradorDto.getPassword());
+             boolean authenticado = administradorServices.VerificaAdminCredencial(administradorDto.getUsername(), administradorDto.getPassword());
 
             if (authenticado) {
                 return ResponseEntity.ok("");
@@ -72,8 +72,4 @@ public class AdministradorControllers {
      	new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    private boolean realiazarauthentication(String username, String password){
-        Administrador admins = administradorServices.findByUsername(username);
-        return admins != null && admins.getPassword().equals(password);
-    }
 }
