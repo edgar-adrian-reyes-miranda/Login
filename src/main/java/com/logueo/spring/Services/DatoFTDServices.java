@@ -13,6 +13,7 @@ import java.util.List;
 public class DatoFTDServices {
     @Autowired
     private DatosFTDRepository datosFTDRepository;
+    
       //Obtener todos los alumnos
     @Transactional(readOnly = true)
     public List<DatosFTD> findAllFTD(){
@@ -25,7 +26,7 @@ public class DatoFTDServices {
         return datosFTDRepository.findById(id).orElse(null);
     }
 
-    //Crear alumno
+    //Crear ftd
     @Transactional
     public DatosFTD crearDatosFTD(DatosFTDDto DatosFTDDto) {
         DatosFTD DatosFTDs= new DatosFTD ();

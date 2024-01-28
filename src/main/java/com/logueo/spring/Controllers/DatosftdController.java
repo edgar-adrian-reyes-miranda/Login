@@ -38,7 +38,7 @@ public class DatosftdController {
     }
 
   //consulta por id
-  @GetMapping("/{id}")
+  @GetMapping(path="/{id}")
   @ResponseStatus(HttpStatus.OK)
   public ResponseEntity<?> ConsultarporIdFTD(@PathVariable Long id) {
       DatosFTD ftd = null;

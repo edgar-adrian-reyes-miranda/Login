@@ -1,6 +1,8 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -24,11 +26,11 @@ public class DatosFTD {
     private String correo_becario;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name="ftd_proyectos",
             joinColumns= @JoinColumn(name="ftd_id"),
             inverseJoinColumns = @JoinColumn(name="proyecto_id"))
-    @JsonIgnoreProperties("datosFTD")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
     private List<Proyectos> proyectos;
 
     @ManyToOne(fetch = FetchType.EAGER)
