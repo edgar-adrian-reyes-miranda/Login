@@ -1,11 +1,10 @@
 package com.logueo.spring.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 @Data
@@ -21,7 +20,7 @@ public class Cursos {
     private String tipo_estatus;
     private String unidad;
 
-    @ManyToMany(mappedBy = "cursos",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonBackReference
+    @ManyToMany(mappedBy = "cursos",fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<DatosFTD> datosFTD;
 }

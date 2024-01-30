@@ -51,17 +51,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<!-- https://mvnrepository.com/artifact/at.favre.lib/bcrypt -->
 		<!-- https://mvnrepository.com/artifact/at.favre.lib/bcrypt -->
 		<dependency>
 			<groupId>org.mindrot</groupId>
 			<artifactId>jbcrypt</artifactId>
 			<version>0.4</version>
 		</dependency>
-
-
-
 	</dependencies>
 
 	<build>
@@ -83,5 +78,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

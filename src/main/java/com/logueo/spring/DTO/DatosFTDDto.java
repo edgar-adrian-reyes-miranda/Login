@@ -3,7 +3,6 @@ package com.logueo.spring.DTO;
 import com.logueo.spring.Entity.*;
 import lombok.Data;
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 public class DatosFTDDto implements Serializable {
@@ -17,7 +16,7 @@ public class DatosFTDDto implements Serializable {
     private String matricula_ftd;
     private String correo_becario;
 
-    private List<Proyectos> proyectos;
+    private Proyectos proyectos;
 
     private Tutores tutores;
 
@@ -27,7 +26,7 @@ public class DatosFTDDto implements Serializable {
 
     private EstatusInfotec estatusInfotec;
 
-    private List<Cursos> cursos;
+    private Cursos cursos;
 
     private DatosPersonales datosPersonales;
 }

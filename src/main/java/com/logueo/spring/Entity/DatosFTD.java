@@ -1,11 +1,8 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.List;
 
 
 @Data
@@ -26,12 +23,10 @@ public class DatosFTD {
     private String correo_becario;
 
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name="ftd_proyectos",
-            joinColumns= @JoinColumn(name="ftd_id"),
-            inverseJoinColumns = @JoinColumn(name="proyecto_id"))
+    @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
-    private List<Proyectos> proyectos;
+    @JoinColumn(name="proyecto_id")
+    private Proyectos proyectos;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
@@ -53,12 +48,10 @@ public class DatosFTD {
     @JoinColumn(name="estatus_id")
     private EstatusInfotec estatusInfotec;
     
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="ftd_cursos",
-    joinColumns = @JoinColumn(name = "ftd_id"),
-    inverseJoinColumns = @JoinColumn(name="curso_id"))
-    @JsonIgnoreProperties("datosFTD")
-    private List<Cursos> cursos;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="curso_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+    private Cursos cursos;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})

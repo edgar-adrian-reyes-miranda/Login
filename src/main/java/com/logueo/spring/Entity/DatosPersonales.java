@@ -30,9 +30,9 @@ public class DatosPersonales {
     private String estados;
     private String municipio;
     private Integer edad;
-    @Digits(integer=10, fraction=0, message ="El maximo de numero de digitos son 10" )
+   // @Digits(integer=10, fraction=0, message ="El maximo de numero de digitos son 10" )
     private Long telefono;
-    @Digits(integer=10,fraction= 0, message = "El maximo de numero son 10 digitos")
+    //@Digits(integer=10,fraction= 0, message = "El maximo de numero son 10 digitos")
     private Long telefono_casa;
     private String correo;
     

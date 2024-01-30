@@ -10,10 +10,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="admins")
+/*
+@SQLDelete(sql="UPDATE admins SET deleted= true WHERE id_admin= ?")
+@FilterDef(
+    name="deletedadminsFilter",
+	parameters = @ParamDef(name = "isDeleted",
+            type = "boolean") )
+@Filter(name="deleteAdminFilter",condition="deleted = :isDeleted")*/
 public class Administrador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_admin;
     private String username;
     private String password;
+   // private  boolean deleted = Boolean.FALSE;
 }
