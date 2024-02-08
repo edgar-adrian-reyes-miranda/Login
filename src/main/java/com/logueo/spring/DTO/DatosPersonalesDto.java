@@ -14,7 +14,7 @@ public class DatosPersonalesDto implements Serializable {
     private String nombre;
     private String p_apellido;
     private String s_apellido;
-    @Size(max=18, message = "EL numero de caracteres de CURP son 18")
+    //@Size(max=18, message = "EL numero de caracteres de CURP son 18")
     private String curp;
     private String direccion;
     private String estados;
