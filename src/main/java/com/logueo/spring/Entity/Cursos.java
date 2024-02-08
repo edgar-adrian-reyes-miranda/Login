@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import java.util.List;
 
 @Data
@@ -20,7 +23,8 @@ public class Cursos {
     private String tipo_estatus;
     private String unidad;
 
-    @ManyToMany(mappedBy = "cursos",fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "cursos",fetch = FetchType.EAGER)
     @JsonIgnore
     private List<DatosFTD> datosFTD;
 }

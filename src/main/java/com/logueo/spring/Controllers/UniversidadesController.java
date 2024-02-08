@@ -11,7 +11,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,6 +94,12 @@ public class UniversidadesController {
         }
         response.put("mensaje", "La universidad fue eliminado con éxito.");
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
+    //soft deleted
+    @DeleteMapping(path="/soft/{id}")
+    public void deleteById(@PathVariable Long id){
+        universidadRepository.deleteById(id);
     }
 
   //Editar

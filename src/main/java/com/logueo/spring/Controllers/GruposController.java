@@ -2,6 +2,7 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.GruposDto;
 import com.logueo.spring.Entity.Grupos;
+import com.logueo.spring.Repository.GrupoRepository;
 import com.logueo.spring.Services.GrupoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class GruposController {
     @Autowired
     private GrupoServices grupoServices;
+    @Autowired
+    private GrupoRepository grupoRepository;
 
   //mapeo para obtenes la list
     @GetMapping(path = "/lista")
@@ -103,5 +106,11 @@ public class GruposController {
         response.put("mensaje", "Grupo actualizado con éxito, con el ID: " + id);
         response.put("Grupos", Editar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    }
+
+    //soft delete
+    @DeleteMapping(path = "/soft/{id}")
+    public void DeleteById(@PathVariable Long id){
+        grupoRepository.deleteById(id);
     }
 }

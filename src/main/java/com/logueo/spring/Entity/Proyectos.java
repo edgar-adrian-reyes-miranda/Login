@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import java.util.List;
 
@@ -13,8 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="proyecto")
-@Where(clause = "status= true")
+@Table(name="proyectos")
 public class Proyectos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +22,10 @@ public class Proyectos {
     private String nombre;
     private String avance;
     private String evaluacion;
+
     
     @OneToMany(mappedBy = "proyectos", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<DatosFTD> datosFTD;
-
-    @Column(name="status", columnDefinition = "boolean DEFAULT  'true'")
-    private Boolean status=true;
 
 }

@@ -2,6 +2,7 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.ProyectosDto;
 import com.logueo.spring.Entity.Proyectos;
+import com.logueo.spring.Repository.ProyectosReposotory;
 import com.logueo.spring.Services.ProyectosServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class ProyectosController {
     @Autowired
     private ProyectosServices proyectosServices;
+    @Autowired
+    private ProyectosReposotory proyectosReposotory;
 
   //mapeo para obtenes la lista
     @GetMapping("/lista")
@@ -107,23 +110,9 @@ public class ProyectosController {
     }
 
    ///cambio  de estado
-    @PutMapping(path = {"/softdelete/{id}"})
-    public void disableProyecto(@PathVariable String id){
-        proyectosServices.softDeleteProyectos(id);  ///puedo meter mas servicios para que sean eliminacion en cascada
+    @DeleteMapping(path = {"/soft/{id}"})
+    public void disableProyecto(@PathVariable Long id){
+      proyectosReposotory.deleteById(id);  ///puedo meter mas servicios para que sean eliminacion en cascada
     }
 
-    //restauracion de estado
-    @PutMapping(path = {"/restore/{id}"})
-    public ResponseEntity<?> restoreProyectos(@PathVariable String id){
-        Map<String, Object>response = new HashMap<>();
-        try {
-            proyectosServices.restoreProyectos(id);
-
-        }catch (Exception e){
-            response.put("mensaje", "Error al restaurar el proyecto. Detalles:"+ e.getMessage());
-            return  new ResponseEntity<Map<String ,Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        response.put("mensaje", "Proyecto restaurado con exito, con el ID:"+ id);
-        return  new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-    }
 }

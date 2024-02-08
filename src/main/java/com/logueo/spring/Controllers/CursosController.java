@@ -2,6 +2,7 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.CursosDto;
 import com.logueo.spring.Entity.Cursos;
+import com.logueo.spring.Repository.CursosRepository;
 import com.logueo.spring.Services.CursosServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class CursosController {
     @Autowired
     private CursosServices cursosServices;
+    @Autowired
+    private CursosRepository cursosRepository;
 
   //mapeo para obtenes la lista
     @GetMapping("/lista")
@@ -85,6 +88,11 @@ public class CursosController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
+    //soft delete
+    @DeleteMapping(path = "/soft/{id}")
+    public void deleteById(@PathVariable Long id){
+        cursosRepository.deleteById(id);
+    }
   //Editar
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> EditarCurso(@PathVariable Long id, @RequestBody CursosDto cursosDto) {

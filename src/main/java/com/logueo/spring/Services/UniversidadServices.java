@@ -3,6 +3,9 @@ package com.logueo.spring.Services;
 import com.logueo.spring.DTO.UniversidadesDto;
 import com.logueo.spring.Entity.Universidades;
 import com.logueo.spring.Repository.UniversidadRepository;
+import jakarta.persistence.EntityManager;
+import org.hibernate.Filter;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +16,9 @@ import java.util.List;
 public class UniversidadServices {
     @Autowired
     private UniversidadRepository universidadRepository;
+
+    @Autowired
+    private EntityManager entityManager;
       //Obtener todos los alumnos
     @Transactional(readOnly = true)
     public List<Universidades> findAlluniversidad(){
@@ -50,4 +56,5 @@ public class UniversidadServices {
             return null;
         }
     }
+
 }

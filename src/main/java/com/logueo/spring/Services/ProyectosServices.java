@@ -58,16 +58,5 @@ public class ProyectosServices {
             return null;
         }
     }
-    //Eliminacion suave
-    @Transactional
-    public void softDeleteProyectos(String id) {
-        proyectosReposotory.sofDeleteProyecto(id);
-    }
-
-    @Transactional
-    public void restoreProyectos(String id) {
-        proyectosReposotory.restoreProyecto(id);
-    }
-
 
 }

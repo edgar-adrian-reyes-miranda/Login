@@ -2,6 +2,7 @@ package com.logueo.spring.Controllers;
 
 import com.logueo.spring.DTO.PerfilamientoDto;
 import com.logueo.spring.Entity.Perfilamiento;
+import com.logueo.spring.Repository.PerfilamientoRepositiry;
 import com.logueo.spring.Services.PerfilamientoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,8 @@ public class PerfilamientoController {
     @Autowired
     private PerfilamientoServices perfilamientoServices;
 
+    @Autowired
+    private PerfilamientoRepositiry perfilamientoRepositiry;
   //mapeo para obtenes la lista
     @GetMapping(path = "/lista")
     @ResponseStatus(HttpStatus.OK)
@@ -106,4 +109,9 @@ public class PerfilamientoController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
+    //soft delete
+    @DeleteMapping(path = "/soft/{id}")
+    public void DeleteById(@PathVariable Long id){
+        perfilamientoRepositiry.deleteById(id);
+    }
 }

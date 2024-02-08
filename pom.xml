@@ -57,8 +57,18 @@
 			<artifactId>jbcrypt</artifactId>
 			<version>0.4</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.2.20.Final</version>
+        </dependency>
 
+		<dependency>
+			<groupId>org.yuequan</groupId>
+			<artifactId>jpa-soft-delete-spring-boot-starter</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+    </dependencies>
 	<build>
 		<plugins>
 			<plugin>
