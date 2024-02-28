@@ -23,7 +23,8 @@ public class Proyectos {
     private String avance;
     private String evaluacion;
 
-    
+
+
     @OneToMany(mappedBy = "proyectos", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<DatosFTD> datosFTD;

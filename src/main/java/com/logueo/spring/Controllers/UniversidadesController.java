@@ -21,17 +21,25 @@ import java.util.Map;
 public class UniversidadesController {
     @Autowired
     private UniversidadServices universidadServices;
+
     @Autowired
     private UniversidadRepository universidadRepository;
 
   //mapeo para obtenes la lista
-    @GetMapping(path = "/lista")
+  @GetMapping(path = "/lista")
+  @ResponseStatus(HttpStatus.OK)
+  public List<Universidades> obtenertodos() {
+      return universidadServices.findAlluniversidad();
+  }
+
+    @GetMapping(path="/lista/false")
     @ResponseStatus(HttpStatus.OK)
-    public List<Universidades> obtenertodos(){
-        return universidadServices.findAlluniversidad();
+    public List<Universidades> obtenertodosF() {
+        return universidadServices.findAllUniversidadesF();
     }
 
-  //paginacion
+
+    //paginacion
     @GetMapping(path = {"/page"})
     public Page<Universidades> getPaginacion(@PageableDefault (page = 0, size = 8)Pageable pageable){
         return universidadRepository.findAll(pageable);
@@ -96,11 +104,6 @@ public class UniversidadesController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
 
-    //soft deleted
-    @DeleteMapping(path="/soft/{id}")
-    public void deleteById(@PathVariable Long id){
-        universidadRepository.deleteById(id);
-    }
 
   //Editar
     @PutMapping(path = "/editar/{id}")
@@ -123,4 +126,20 @@ public class UniversidadesController {
         response.put("Universidades", Editar);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
     }
+
+    @DeleteMapping("/logica/{id}")
+    public void eliminar(@PathVariable Long id){
+        universidadServices.eliminar(id);
+    }
+
+    @PutMapping("/logica/{id}")
+    public ResponseEntity<Universidades> restaurar(@PathVariable Long id){
+        Universidades universidades = universidadServices.restaurar(id);
+        if (universidades != null){
+            return ResponseEntity.ok(universidades);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }

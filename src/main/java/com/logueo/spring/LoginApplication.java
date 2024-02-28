@@ -9,8 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class LoginApplication implements CommandLineRunner {
-	@Resource
-	ActividadesServices actividadesServices;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(LoginApplication.class, args);
@@ -18,7 +17,6 @@ public class LoginApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-	actividadesServices.deleteall();
-	actividadesServices.init();
+
 	}
 }

@@ -1,5 +1,6 @@
 package com.logueo.spring.Entity;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
@@ -19,6 +20,9 @@ public class Universidades{
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id_uni;
         private String nombre;
+
+        @JsonIgnore
+        private Boolean activo=true;
 
         @OneToMany(mappedBy = "universidades",fetch = FetchType.EAGER)
         @JsonIgnore

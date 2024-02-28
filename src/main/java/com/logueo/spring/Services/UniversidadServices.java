@@ -4,8 +4,6 @@ import com.logueo.spring.DTO.UniversidadesDto;
 import com.logueo.spring.Entity.Universidades;
 import com.logueo.spring.Repository.UniversidadRepository;
 import jakarta.persistence.EntityManager;
-import org.hibernate.Filter;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +20,14 @@ public class UniversidadServices {
       //Obtener todos los alumnos
     @Transactional(readOnly = true)
     public List<Universidades> findAlluniversidad(){
-        return universidadRepository.findAll();
+        return universidadRepository.findByActivoTrue();
     }
+
+    @Transactional(readOnly = true)
+    public List<Universidades> findAllUniversidadesF() {
+        return universidadRepository.findByActivoFalse();
+    }
+
 
     //Consultar alumnos por id
     @Transactional(readOnly = true)
@@ -55,6 +59,19 @@ public class UniversidadServices {
         }else {
             return null;
         }
+    }
+
+    public void eliminar(Long id){
+        Universidades universidades = universidadRepository.findById(id).orElseThrow();
+        universidades.setActivo(false);
+        universidadRepository.save(universidades);
+    }
+
+    public Universidades restaurar(Long id){
+        Universidades universidades = universidadRepository.findById(id).orElseThrow();
+        universidades.setActivo(true);
+        universidadRepository.save(universidades);
+        return universidades;
     }
 
 }

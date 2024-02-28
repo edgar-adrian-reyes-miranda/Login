@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "perfilamiento")
+
 public class Perfilamiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

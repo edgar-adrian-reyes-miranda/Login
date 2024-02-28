@@ -1,6 +1,7 @@
 package com.logueo.spring.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,8 +22,10 @@ public class Usuario {
 	private String password;
 	private String correo;
 
-	@OneToMany(mappedBy = "usuario", fetch =  FetchType.EAGER)
-	@JsonIgnore
-	private List<DatosPersonales> datosPersonales;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"hibernateLazyInitializaer", "handler"})
+	@JoinColumn(name="id_person")
+	private DatosPersonales datosPersonales;
 
 }

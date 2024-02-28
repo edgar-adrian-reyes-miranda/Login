@@ -42,6 +42,7 @@ public class UsuarioServices {
        usuarios.setUsername(usuarioDto.getUsername());
        usuarios.setPassword(BCrypt.hashpw(usuarioDto.getPassword(), BCrypt.gensalt()));
        usuarios.setCorreo(usuarioDto.getCorreo());
+       usuarios.setDatosPersonales(usuarioDto.getDatosPersonales());
        return usuarioRepository.save(usuarios);
     }
 
